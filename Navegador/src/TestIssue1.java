@@ -3,21 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package navegador;
 
 /**
  *
  * @author Everton
  */
-public class ClassTeste {
-
-    public ClassTeste() {
-        //ONLY TEST
-        /// TESTE 2
-        //TESTE 3 REVIEW
-    }
+public class TestIssue1 {
+    //THIS IS A CLASSS JUST TO TEST ISSUE #9
     
-    //COMMIT TESTE 2
+    //SEGUNDA REFERENCIA
     
-    
+    //FINALIZANDO ISSUE COM MENSAGEM DE COMMIT
 }

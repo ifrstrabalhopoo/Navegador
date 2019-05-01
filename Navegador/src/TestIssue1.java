@@ -14,4 +14,7 @@ public class TestIssue1 {
     //SEGUNDA REFERENCIA
     
     //FINALIZANDO ISSUE COM MENSAGEM DE COMMIT
+    
+    
+    //REABERTO ENCIANDO CLOSE
 }

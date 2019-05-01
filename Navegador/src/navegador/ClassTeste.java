@@ -10,5 +10,12 @@ package navegador;
  * @author Everton
  */
 public class ClassTeste {
+
+    public ClassTeste() {
+        //ONLY TEST
+    }
+    
+    //COMMIT TESTE 2
+    
     
 }

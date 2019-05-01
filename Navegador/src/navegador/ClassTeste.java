@@ -13,6 +13,7 @@ public class ClassTeste {
 
     public ClassTeste() {
         //ONLY TEST
+        /// TESTE 2
     }
     
     //COMMIT TESTE 2

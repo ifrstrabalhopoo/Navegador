@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package navegador.util;
+package navegador.parser;
 
 /**
  *  Uma árvore de dados customizada para guardar os dados do parsing 

@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package navegador.nodes;
-
-import java.util.Optional;
+package nodes;
 
 /**
  *
@@ -14,7 +12,7 @@ import java.util.Optional;
 public class TextNode extends LeafNode {
     public final String value;
 
-    public TextNode(String value, int index, Optional<Node> parent) {
+    public TextNode(String value, int index, Node parent) {
         super("text/content", index, parent);
         this.value = value;
     }

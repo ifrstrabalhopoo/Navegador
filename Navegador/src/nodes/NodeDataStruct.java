@@ -15,38 +15,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package navegador.parser;
+package nodes;
 
 import java.util.ArrayList;
 import java.util.List;
-import navegador.nodes.Node;
 
 /**
- *
+ * Apenas uma estrutura dos dados de um Node
  * @author everton
  */
-public class Document {
-    private final Node root;
-    private List<Node> nodes = new ArrayList<Node>();
-    
-    public Document(Node root) {
-        this.root = root;
-        this.nodes.add(root);
-    }
-    
-    public void addNode(Node node)
-    {
-        this.nodes.add(node);
-    }
-    
-    public Node findNodeByIndex(int index)
-    {
-        return nodes.get(index);
-    }
-    
-    public Node getRoot()
-    {
-        return this.root;
-    }
+public class NodeDataStruct {
+    public String       tagName     = null;
+    public List<Attribute>  attributes  = new ArrayList<Attribute>();
     
 }

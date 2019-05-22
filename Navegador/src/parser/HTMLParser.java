@@ -1,9 +1,9 @@
-package navegador.parser;
+package parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import navegador.nodes.Node;
-import navegador.nodes.TextNode;
+import nodes.Node;
+import nodes.TextNode;
 
 
 //TODO: Esta classe irá fazer o parsing do html e quebrar em uma árvore

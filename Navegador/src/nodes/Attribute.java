@@ -15,17 +15,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package navegador.nodes;
-
-import java.util.ArrayList;
-import java.util.List;
+package nodes;
 
 /**
- * Apenas uma estrutura dos dados de um Node
+ *
  * @author everton
  */
-public class NodeDataStruct {
-    public String       tagName     = null;
-    public List  attributes  = new ArrayList<Attribute>();
-    
+public class Attribute {
+    public String name;
+    public String value;
 }

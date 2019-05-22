@@ -19,20 +19,23 @@ public class Document {
 		
 		Matcher m = PATTERN.matcher(htmlInput);
 		
-		if(!m.matches() && !doc.isEmpty() && parent != null) {
-			Node text = new TextNode(htmlInput);
-			parent.addChild(text);
-		}
-		m.reset();
+		int matchChount = 0;
 		while(m.find()) {
+			matchChount++;
+		}
+		
+		m.reset();
+		while(matchChount > 0 && m.find()) {
+				matchChount -= 1;
 				String data = m.group(2);
 				if(doc.isEmpty()) {
-					doc.html = new Tree(data);
+					doc.html = new Tree<String>(data);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, doc.html.getRoot(), nextHtml);
 				}
-				if(parent == null) {
+				else if(parent == doc.html.getRoot()) {
 					Node<String> newNode = new Node<String>(data, doc.html.getRoot());
+					doc.html.getRoot().addChild(newNode);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, newNode, nextHtml);
 				}

@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package navegador.nodes;
+package nodes;
 
-import java.util.Optional;
 
 /**
  *
  * @author everton
  */
-public class LeafNode extends Node{
+public class Element extends Node {
     
-    public LeafNode(String name, int index, Optional<Node> parent) {
+    public Element(String name, int index, Node parent) {
         super(name, index, parent);
     }
     

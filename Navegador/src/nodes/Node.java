@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package navegador.nodes;
+package nodes;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -17,15 +16,15 @@ public class Node {
     public final String name;
     public final int index;
     public final Node parent;
-    public List children = new ArrayList<Node>();
+    public List<Node> children = new ArrayList<Node>();
     
     
-    public Node(String name, int index, Optional<Node> parent)
+    public Node(String name, int index, Node parent2)
     {
         this.name = name;
         this.index = index;
         
-        this.parent = parent.isPresent() ? parent.get() : null;
+        this.parent = parent2;
     }
     public Node(String name, int index)
     {

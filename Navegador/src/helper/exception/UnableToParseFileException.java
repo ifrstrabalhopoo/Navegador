@@ -15,13 +15,20 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package navegador.nodes;
+package helper.exception;
 
 /**
  *
  * @author everton
  */
-public class Attribute {
-    public String name;
-    public String value;
+public class UnableToParseFileException extends RuntimeException{
+
+    public UnableToParseFileException() {
+    }
+
+    public UnableToParseFileException(String msg) {
+        super(msg);
+    }
+    
+    
 }

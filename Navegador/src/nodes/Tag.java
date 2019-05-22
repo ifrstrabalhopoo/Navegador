@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package navegador.nodes;
-
-import java.util.Optional;
+package nodes;
 
 /**
  *
@@ -14,7 +12,7 @@ import java.util.Optional;
 public class Tag extends Element
 {
     
-    public Tag(String name, int index, Optional<Node> parent) {
+    public Tag(String name, int index, Node parent) {
         super(name, index, parent);
     }
     

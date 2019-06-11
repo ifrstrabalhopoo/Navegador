@@ -1,3 +1,14 @@
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,10 +47,12 @@ public class JanelaSwing extends javax.swing.JFrame {
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jDesktopPane3 = new javax.swing.JDesktopPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jButton3 = new javax.swing.JButton();
         jTextFieldURL = new javax.swing.JTextField();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,6 +133,8 @@ public class JanelaSwing extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jButton3.setText("jButton3");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextFieldURL.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +157,8 @@ public class JanelaSwing extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("GO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,8 +168,10 @@ public class JanelaSwing extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldURL, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTextFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(1, 1, 1))
             .addComponent(jTabbedPane3)
         );
         layout.setVerticalGroup(
@@ -162,7 +181,8 @@ public class JanelaSwing extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -171,7 +191,29 @@ public class JanelaSwing extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldURLActionPerformed
-        
+        URL website = null;
+        try {
+            website = new URL("http://www.website.com/information.asp");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(JanelaSwing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ReadableByteChannel rbc = null;
+        try {
+            rbc = Channels.newChannel(website.openStream());
+        } catch (IOException ex) {
+            Logger.getLogger(JanelaSwing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream("information.html");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(JanelaSwing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        } catch (IOException ex) {
+            Logger.getLogger(JanelaSwing.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jTextFieldURLActionPerformed
 
@@ -221,6 +263,8 @@ public class JanelaSwing extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;

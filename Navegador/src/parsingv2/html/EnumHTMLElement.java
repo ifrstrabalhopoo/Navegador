@@ -13,11 +13,11 @@ package parsingv2.html;
  * @param shouldRender		Se esta tag deve ser renderizada setar para true
  * @param textEffect		Efeito de texto (negrito, alinhamento, etc)
  */
-public enum EnumHTMLTag {
+public enum EnumHTMLElement {
 //	HTML("html",false, false),
 //    HEAD("head",false, false),
 //    BODY("body",false, true);
-	A			("a", 			false, 	true,	"none"),
+	A			("a", 			false, 	true,	"href"),
 		//!acronym  (not supported)
     	//!abbr
 	ADDRESS		("address", 	false,	true,	"none"),	
@@ -35,7 +35,7 @@ public enum EnumHTMLTag {
     	//!blink
     BLOCKQUOTE	("blockquote", 	false,	true,	"none"),
     BODY		("body",		false,	true,	"none"),
-    BR			("br", 			true,	true,	"newline"),
+    BR			("br", 			true,	true,	"displayNewline"),
     BUTTON		("button",		false,	true,	"asButton"),
     	//!canvas
     CAPTION		("caption",		false,	true,	"textBold"),
@@ -152,12 +152,12 @@ public enum EnumHTMLTag {
     	//!track
     	//!tt
     U			("u",		 	false,	true,	"textSmall"),
-    UL			("ul", 			false,	true,	"none");
+    UL			("ul", 			false,	true,	"none"),
     	//!var
     	//!video
     	//!wbr
     	//!xmp
-    
+	TEXTNODE	("textnode",	false,	true,	"displayText");
     
     
     
@@ -174,7 +174,7 @@ public enum EnumHTMLTag {
      * @param shouldRender		Se esta tag deve ser renderizada setar para true
      * @param textEffect		Efeito de texto (negrito, alinhamento, etc)
      */
-    private EnumHTMLTag(String tagname, boolean tagOmission, boolean shouldRender, String textEffect) {
+    private EnumHTMLElement(String tagname, boolean tagOmission, boolean shouldRender, String textEffect) {
     	this.tagname = tagname;
     	this.tagOmission = tagOmission;
     	this.shouldRender = shouldRender;
@@ -201,7 +201,7 @@ public enum EnumHTMLTag {
      */
     public static boolean contains(String compare) {
     	boolean result = false;
-    	for(EnumHTMLTag value : EnumHTMLTag.values()) {
+    	for(EnumHTMLElement value : EnumHTMLElement.values()) {
     		if(value.tagname().equals(compare)) {
     			result = true;
     		}
@@ -213,9 +213,9 @@ public enum EnumHTMLTag {
      * @param str tagname a ser comparado
      * @return valor do enum or null
      */
-    public static EnumHTMLTag fromString(String str) 
+    public static EnumHTMLElement fromString(String str) 
     {
-    	for (EnumHTMLTag tag : EnumHTMLTag.values()) 
+    	for (EnumHTMLElement tag : EnumHTMLElement.values()) 
     	{
     		if(tag.tagname.equals(str.toLowerCase())) 
     		{

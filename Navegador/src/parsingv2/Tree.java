@@ -3,8 +3,8 @@ package parsingv2;
 public class Tree {
     private Node root;
 
-    public Tree(String rootData) {
-        root = new Node(rootData);
+    public Tree(String tagName, String tagData) {
+        root = Node.makeNode(tagName, tagData);
     }
     
     public Node getRoot() {
@@ -15,8 +15,8 @@ public class Tree {
      * Adiciona ao root
      * @param newNodeData
      */
-    public Node addNode(String newNodeData) {
-    	Node n = new Node(newNodeData);
+    public Node addNode(String newTagName, String newTagData) {
+    	Node n = Node.makeNode(newTagName, newTagData);
     	root.children.add(n);
     	return n;
     }

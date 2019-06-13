@@ -2,6 +2,9 @@ package parsingv2;
 import java.util.ArrayList;
 import java.util.List;
 
+import parsingv2.html.EnumHTMLElement;
+import parsingv2.html.HTMLAttribute;
+
 
 
 /**
@@ -10,15 +13,15 @@ import java.util.List;
  * 
  */
 public class Node {
-		protected List<Node> children = new ArrayList<Node>();
-		protected List<String> 		renderEffects = null;
-		protected String 		data = null;
+		protected List<Node> children = new ArrayList<>();
+		protected List<HTMLAttribute> attributes = new ArrayList<>(); 
+		protected String 		rawData = null;
 		protected String 		tagName = null;
-        protected EnumHTMLTag	tag = null;
+        protected EnumHTMLElement	tag = null;
 		protected Node 			parent = null;
 		protected int 			level = 0;
 
-		private Node() {
+		protected Node() {
 			
 		}
 		/**
@@ -26,7 +29,7 @@ public class Node {
 		 * @param data tagname
 		 */
     	public Node(String data) {
-    		this.data = data;
+    		this.rawData = data;
     	}
     	/**
     	 * Gera um node com tagname e parent
@@ -34,7 +37,7 @@ public class Node {
     	 * @param parent node pai
     	 */
     	public Node(String data, Node parent) {
-    		this.data = data;
+    		this.rawData = data;
     		this.parent = parent;
     	}
     	/**
@@ -45,10 +48,10 @@ public class Node {
     	 * @return Novo nó
     	 */
     	public static Node makeNode(String tagname, String data, Node parent) {
-    		Node node 		= new Node();
-    		node.data 		= Node.parseData(data);
+    		Node node 			= new Node();
+    		node.rawData 		= Node.parseData(data);
     		node.tagName 	= tagname;
-    		node.tag		= EnumHTMLTag.fromString(tagname);
+    		node.tag		= EnumHTMLElement.fromString(tagname);
     		node.parent		= parent;
     		return node;
     	}
@@ -59,9 +62,10 @@ public class Node {
     	 * @return Novo nó
     	 */
     	public static Node makeNode(String tagname, String data) {
-    		Node node 		= new Node();
-    		node.data 		= Node.parseData(data);
-    		node.tagName 	= tagname;
+    		Node node 			= new Node();
+    		node.rawData 		= Node.parseData(data);
+    		node.tagName 		= tagname;
+    		node.tag			= EnumHTMLElement.fromString(tagname);
     		return node;
     	}
     	/**
@@ -77,6 +81,7 @@ public class Node {
     	 * @return
     	 */
     	protected static String parseData(String data) {
+    		if(data == null) return null;
     		String result = data.replace(">", "");
     		result = result.trim();
     		if(result.isEmpty()) 
@@ -96,8 +101,8 @@ public class Node {
     		return this.parent;
     	}
     	
-    	public String getData() {
-    		return this.data;
+    	public String getRawData() {
+    		return this.rawData;
     	}
     	
     	public boolean isLeaf() {
@@ -105,5 +110,13 @@ public class Node {
     			return true;
     		
     		return false;
+    	}
+    	public boolean hasAttribute() {
+    		if(!this.attributes.isEmpty())
+    			return true;
+    		return false;
+    	}
+    	public List<HTMLAttribute> getAttributes() {
+    		return this.attributes;
     	}
     }

@@ -5,7 +5,6 @@ public class Run {
 	public static void main(String[] args) {
 		
 		String exampleHtml = "\n" + 
-				"<!DOCTYPE html>\n" + 
 				"	\n" + 
 				"<html dir=\"ltr\" lang=\"en\">\n" + 
 				"<head>\n" + 
@@ -44,6 +43,7 @@ public class Run {
 				"\n" + 
 				"<body>\n" + 
 				"\n" + 
+				"\n<br>" + 
 				"<header id=\"pageMeta\">\n" + 
 				"<div class=\"accessAid\"><a href=\"/\" title=\"Home\"><img src=\"/rAF/htmldog.png\" width=\"180\" height=\"130\" alt=\"HTML Dog\"></a></div>\n" + 
 				"	<div id=\"toNav\"><a href=\"#nav\">Skip to navigation</a></div>\n" + 

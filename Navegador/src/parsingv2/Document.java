@@ -33,7 +33,7 @@ public class Document {
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, parent, nextHtml);
 				}
-				else if(doc.isEmpty()) {	// se for a primeira tag do documento inicializa a árvore html
+				else if(doc.isEmpty()) { // se for a primeira tag do documento inicializa a árvore html
 					doc.html = new Tree(tag);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, doc.html.getRoot(), nextHtml);
@@ -46,7 +46,7 @@ public class Document {
 				}
 				//TODO: Node: isLeaf?
 				else {
-					Node newNode = new Node(tag, parent);
+					Node newNode = Node.makeNode(tag, nodeData, parent);
 					parent.addChild(newNode);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, newNode, nextHtml);
@@ -67,7 +67,7 @@ public class Document {
 	 * @return
 	 */
 	private static boolean isTagEnabled(String tagName) {
-		if(EnabledTags.contains(tagName)) return true;
+		if(EnumHTMLTag.contains(tagName)) return true;
 		return false;
 	}
 }

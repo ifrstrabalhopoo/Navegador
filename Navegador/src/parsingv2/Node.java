@@ -14,7 +14,7 @@ public class Node {
 		protected List<String> 		renderEffects = null;
 		protected String 		data = null;
 		protected String 		tagName = null;
-        
+        protected EnumHTMLTag	tag = null;
 		protected Node 			parent = null;
 		protected int 			level = 0;
 
@@ -48,6 +48,7 @@ public class Node {
     		Node node 		= new Node();
     		node.data 		= Node.parseData(data);
     		node.tagName 	= tagname;
+    		node.tag		= EnumHTMLTag.fromString(tagname);
     		node.parent		= parent;
     		return node;
     	}

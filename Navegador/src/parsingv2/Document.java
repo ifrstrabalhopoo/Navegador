@@ -27,6 +27,7 @@ public class Document {
 		m.reset();
 		while(matchChount > 0 && m.find()) {
 				String tag = m.group(2);
+				String nodeData = m.group(3);
 				matchChount -= 1;
 				if(!Document.isTagEnabled(tag)) { //se a tag não for permitida filtra e remove
 					String nextHtml = m.group(4);
@@ -38,7 +39,7 @@ public class Document {
 					Document.parseHTML(doc, doc.html.getRoot(), nextHtml);
 				}
 				else if(parent == doc.html.getRoot()) { // se for filho da raiz
-					Node newNode = new Node(tag, doc.html.getRoot());
+					Node newNode = Node.makeNode(tag, nodeData, doc.html.getRoot());
 					doc.html.getRoot().addChild(newNode);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, newNode, nextHtml);

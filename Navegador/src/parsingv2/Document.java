@@ -29,18 +29,18 @@ public class Document {
 				matchChount -= 1;
 				String data = m.group(2);
 				if(doc.isEmpty()) {
-					doc.html = new Tree<String>(data);
+					doc.html = new Tree(data);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, doc.html.getRoot(), nextHtml);
 				}
 				else if(parent == doc.html.getRoot()) {
-					Node<String> newNode = new Node<String>(data, doc.html.getRoot());
+					Node newNode = new Node(data, doc.html.getRoot());
 					doc.html.getRoot().addChild(newNode);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, newNode, nextHtml);
 				}
 				else {
-					Node<String> newNode = new Node<String>(data, parent);
+					Node newNode = new Node(data, parent);
 					parent.addChild(newNode);
 					String nextHtml = m.group(4);
 					Document.parseHTML(doc, newNode, nextHtml);

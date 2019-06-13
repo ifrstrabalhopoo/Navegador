@@ -2,39 +2,50 @@ package parsingv2;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Node<T> {
-		protected T data;
-		protected Node<T> parent;
-        protected List<Node<T>> children = new ArrayList<Node<T>>();
+/**
+ * Classe define o conteúdo de um nó
+ * 
+ */
+public class Node {
+		protected List<Node> children = new ArrayList<Node>();
+		protected String 		renderEffect = null;
+		protected String 		data = null;
+		protected String 		name = null;
         
-        public Node() {
+		protected Node 			parent = null;
+		protected int 			level = 0;
+
+		private Node() {
         	
         }
         
-    	public Node(T data) {
+    	public Node(String data) {
     		this.data = data;
     	}
     	
-    	public Node(T data, Node<T> parent) {
+    	public Node(String data, Node parent) {
     		this.data = data;
     		this.parent = parent;
     	}
     	
-    	public List<Node<T>> getChildren() {
+    	public List<Node> getChildren() {
     		return this.children;
     	}
     	
-    	public void addChild(Node<T> child) {
+    	public void addChild(Node child) {
     		this.children.add(child);
     		child.parent = this;
     	}
     	
-    	public Node<T> getParent(){
+    	public void addParent(Node parent) {
+    		this.parent = parent;
+    	}
+    	
+    	public Node getParent(){
     		return this.parent;
     	}
     	
-    	public T getData() {
+    	public String getData() {
     		return this.data;
     	}
     }

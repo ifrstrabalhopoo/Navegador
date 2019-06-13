@@ -1,16 +1,14 @@
 package parsingv2;
 import java.util.ArrayList;
 
-public class Tree<T> {
-    private Node<T> root;
+public class Tree {
+    private Node root;
 
-    public Tree(T rootData) {
-        root = new Node<T>();
-        root.data = rootData;
-        root.children = new ArrayList<Node<T>>();
+    public Tree(String rootData) {
+        root = new Node(rootData);
     }
     
-    public Node<T> getRoot() {
+    public Node getRoot() {
     	return this.root;
     }
 
@@ -18,10 +16,8 @@ public class Tree<T> {
      * Adiciona ao root
      * @param newNodeData
      */
-    public Node<T> addNode(T newNodeData) {
-    	Node<T> n = new Node<T>();
-    	n.data = newNodeData;
-    	n.children = new ArrayList<Node<T>>();
+    public Node addNode(String newNodeData) {
+    	Node n = new Node(newNodeData);
     	root.children.add(n);
     	return n;
     }
@@ -31,12 +27,10 @@ public class Tree<T> {
      * @param parent
      * @param newNodeData
      */
-    public Node<T> addNode(Node<T> parent, T newNodeData)
+    public Node addNode(Node parent, String newNodeData)
     {
-    	Node<T> n = new Node<T>();
-    	n.data = newNodeData;
-    	n.children = new ArrayList<Node<T>>();
-    	n.parent = parent;
+    	Node n = new Node(newNodeData);
+    	n.addParent(parent);
     	return n;
     }
 

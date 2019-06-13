@@ -1,7 +1,6 @@
 package swing;
 
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -24,6 +23,10 @@ import java.util.logging.Logger;
 public class JanelaSwing extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form JanelaSwing
      */
     public JanelaSwing() {

@@ -3,7 +3,6 @@ package parsingv2;
 
 public class Run {
 	public static void main(String[] args) {
-		Tree<String> document = null;
 		
 		String exampleHtml = "\n" + 
 				"<!DOCTYPE html>\n" + 
@@ -325,7 +324,7 @@ public class Run {
 				"<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></aside>\n" + 
 				"\n" + 
 				"	\n" + 
-				"<p>© 2003–2019. <a href=\"/terms/\">Terms of use</a>.<br><a href=\"/edinburgh/\">Web design and development by <strong>HTML Dog, Edinburgh</strong></a>.</p>\n" + 
+				"<p>ï¿½ 2003ï¿½2019. <a href=\"/terms/\">Terms of use</a>.<br><a href=\"/edinburgh/\">Web design and development by <strong>HTML Dog, Edinburgh</strong></a>.</p>\n" + 
 				"\n" + 
 				"</footer>\n" + 
 				"\n" + 
@@ -351,24 +350,7 @@ public class Run {
 				"\n" + 
 				"</html>";
 		
-								
-		
-		document = new Tree<String>("<HTML>");
-		
-		//FIND CHILD
-		Node<String> firstChild = new Node<String>("HEAD");
-		Node<String> secondChild = new Node<String>("BODY");
-		
-		document.getRoot().addChild(firstChild);
-		document.getRoot().addChild(secondChild);
-		
-		Node<String> netoBody1 = new Node<String>("DIV");
-		Node<String> netoBody2 = new Node<String>("TABLE");
-		
-		secondChild.addChild(netoBody1);
-		secondChild.addChild(netoBody2);
-		
-		
+		// Document faz o parse do HTML
 		Document dok = Document.parseHTML(new Document(), null, exampleHtml);
 		
 		System.out.println("linebreak");

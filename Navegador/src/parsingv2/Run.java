@@ -352,8 +352,7 @@ public class Run {
 		
 		// Document faz o parse do HTML
 		Document dok = Document.factory(exampleHtml);
-		
-		System.out.println("linebreak");
+		System.out.println(dok.getTreeString());
 		
 //		String regex = "(<??)([A-Z][A-Z0-9]*)(\\b[^>]*>)([.\\s\\S]*?)<\\/\\2>";
 //		Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);

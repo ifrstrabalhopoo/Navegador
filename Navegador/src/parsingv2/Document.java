@@ -1,5 +1,8 @@
 package parsingv2;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,9 +21,12 @@ public class Document {
 	private static final Pattern PATTERN_OPEN_TAG = Pattern.compile(REGEX_OPEN_TAG,
 			Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
 	
+	private List<Node> nodesList = new ArrayList<Node>();
+	
 	private Document() {
-		
+		// instanciado apenas via factory
 	}
+	
 	/**
 	 * Faz o parsing de uma string html (htmlInput)
 	 * @param doc Documento será resultado do parsing
@@ -28,8 +34,11 @@ public class Document {
 	 * @param htmlInput
 	 * @return
 	 */
-	private static Document parseHTMLv2(Document doc, Node parent, String htmlInput) {
-		
+	private static Document parseHTMLv2(Document doc, Node parent, String htmlInput, int step) {
+		//primeiro passo
+		if(step < 1) 
+			step = 1;
+		else step++;
 		// checar se tem tag
 		Matcher matchClosedTags = PATTERN_CLOSED_TAG.matcher(htmlInput);
 		
@@ -47,13 +56,14 @@ public class Document {
 	
 					if(doc.isEmpty() || parent == null) 										// se não tem raiz ou parent, gerar raiz
 					{
-						Document.gerarRaiz(doc, tag, nodeData, nextHtml);
+						Document.gerarRaiz(doc, tag, nodeData, nextHtml, step);
 					}
 					else if(parent != null)														// se houver parent, gera node
 					{
-						Document.geraNode(doc, parent, tag, nodeData, nextHtml);
+						Document.geraNode(doc, parent, tag, nodeData, nextHtml, step);
 					}
 				}
+				step++;
 				return doc;
 			}
 		
@@ -72,15 +82,17 @@ public class Document {
 					String nodeData = matchOpenTags.group(4);
 					String nextHtml = htmlInput.replace(matchOpenTags.group(1), "");
 					
-					Document.geraNode(doc, parent, tag, nodeData, nextHtml);
+					Document.geraNode(doc, parent, tag, nodeData, nextHtml, step);
 				}
+				step++;
 				return doc;
 			}
 		
 		// checar se tem texto
 		if(!htmlInput.trim().isEmpty()) 
 		{
-			Document.geraTextNode(doc, parent, htmlInput);
+			Document.geraTextNode(doc, parent, htmlInput, step);
+			step++;
 		}
 		
 		
@@ -153,31 +165,70 @@ public class Document {
 		
 	}
 	
+	/**
+	 * Faz o parsing do html e retorna um documento
+	 * @param html html a ser parseado
+	 * @return documento
+	 */
 	public static Document factory(String html)
 	{
 		Document doc = new Document();
-		Document.parseHTMLv2(doc, null, html);
+		Document.parseHTMLv2(doc, null, html, 0);
 		
 		return doc;
 	}
 	
-	private static void gerarRaiz(Document doc, String tag, String nodeData, String nextHtml) 
+	/**
+	 * Gera a raiz do documento
+	 * @param doc
+	 * @param tag
+	 * @param nodeData
+	 * @param nextHtml
+	 */
+	private static void gerarRaiz(Document doc, String tag, String nodeData, String nextHtml, int step) 
 	{
 		doc.html = new Tree(tag, nodeData);
-		Document.parseHTMLv2(doc, doc.html.getRoot(), nextHtml);
+		doc.html.getRoot().setLevel(step);
+		doc.nodesList.add(doc.html.getRoot());
+		Document.parseHTMLv2(doc, doc.html.getRoot(), nextHtml, step);
 	}
-	private static void geraNode(Document doc, Node parent, String tag, String nodeData, String nextHtml) 
+	
+	/**
+	 * Gera um node e o adiciona ao documento
+	 * @param doc
+	 * @param parent
+	 * @param tag
+	 * @param nodeData
+	 * @param nextHtml
+	 */
+	private static void geraNode(Document doc, Node parent, String tag, String nodeData, String nextHtml, int step) 
 	{
 		Node newNode = Node.makeNode(tag, nodeData);
 		parent.addChild(newNode);
-		Document.parseHTMLv2(doc, newNode, nextHtml);
+		newNode.setLevel(step);
+		doc.nodesList.add(newNode);
+		Document.parseHTMLv2(doc, newNode, nextHtml, step);
 	}
-	private static void geraTextNode(Document doc, Node parent, String text)
+	
+	/**
+	 * Gera um TextNode e o adiciona ao documento
+	 * @param doc
+	 * @param parent
+	 * @param text
+	 */
+	private static void geraTextNode(Document doc, Node parent, String text, int step)
 	{
 		Node newTextNode = new TextNode(text, parent);
+		newTextNode.setLevel(step);
+		doc.nodesList.add(newTextNode);
 		parent.addChild(newTextNode);
 	}
 	
+	/**
+	 * Conta quantos matches foram encontrados pelo matcher
+	 * @param m
+	 * @return quantidade
+	 */
 	private static int contaMatches(Matcher m) {
 		int count = 0;
 		while(m.find()) {
@@ -186,19 +237,27 @@ public class Document {
 		m.reset();
 		return count;
 	}
-	
-	
-	
-	private static String removeGroup(String input, String remove) {
+
+	/**
+	 * Remove uma de uma String a String especificada
+	 * @param input Texto
+	 * @param remove Texto a ser removido da string
+	 * @return
+	 */
+	private static String removeString(String input, String remove) {
 		String output = input;
 		output.replace(remove,"");
 		
 		return output;
 	}
-	
+	/**
+	 * Se o documento não tem elemento root
+	 * @return
+	 */
 	public boolean isEmpty() {
 		return this.html == null ? true : false;
 	}
+	
 	/**
 	 * Verifica se a tag está habilitada
 	 * @param tagName
@@ -209,4 +268,26 @@ public class Document {
 			return true;
 		return false;
 	}
+	
+	public String getTreeString()
+	{
+		StringBuilder buffer = new StringBuilder("HTML Tree:");
+		
+		this.nodesList.forEach((node) -> 
+			{
+				buffer.append("\n");
+				int nodeLevel = node.getLevel();
+				buffer.append(String.join("", Collections.nCopies(nodeLevel, "    ")));
+				if(!(node instanceof TextNode)) {
+					buffer.append("[Tag: " + node.tagName+ " | Atributos:{ " + node.rawData + " }]");	
+				} else {
+					buffer.append("-- Texto: \"" + node.rawData + "\"");
+				}
+			}
+		);
+		
+		return buffer.toString();
+		
+	}
+	
 }

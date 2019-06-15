@@ -7,6 +7,7 @@ public class TextNode extends Node{
 	public TextNode(String text, Node parent) {
 		super();
 		this.parent = parent;
+		this.tagName = "#textElement";
 		this.rawData = text;
 		this.tag = EnumHTMLElement.TEXTNODE;
 	}

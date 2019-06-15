@@ -15,11 +15,11 @@ import parsingv2.html.HTMLAttribute;
 public class Node {
 		protected List<Node> children = new ArrayList<>();
 		protected List<HTMLAttribute> attributes = new ArrayList<>(); 
-		protected String 		rawData = null;
-		protected String 		tagName = null;
+		protected String 			rawData = null;
+		protected String 			tagName = null;
         protected EnumHTMLElement	tag = null;
-		protected Node 			parent = null;
-		protected int 			level = 0;
+		protected Node 				parent = null;
+		protected int				level = 0;
 
 		protected Node() {
 			
@@ -61,7 +61,8 @@ public class Node {
     	 * @param data Dados do nó
     	 * @return Novo nó
     	 */
-    	public static Node makeNode(String tagname, String data) {
+    	public static Node makeNode(String tagname, String data) 
+    	{
     		Node node 			= new Node();
     		node.rawData 		= Node.parseData(data);
     		node.tagName 		= tagname;
@@ -72,7 +73,8 @@ public class Node {
     	 * Lista dos filhos
     	 * @return ArrayList de filhos
     	 */
-    	public List<Node> getChildren() {
+    	public List<Node> getChildren() 
+    	{
     		return this.children;
     	}
     	/**
@@ -80,7 +82,8 @@ public class Node {
     	 * @param data
     	 * @return
     	 */
-    	protected static String parseData(String data) {
+    	protected static String parseData(String data) 
+    	{
     		if(data == null) return null;
     		String result = data.replace(">", "");
     		result = result.trim();
@@ -88,35 +91,49 @@ public class Node {
     			return null;
     		return result;
     	}
-    	public void addChild(Node child) {
+    	public void addChild(Node child) 
+    	{
     		this.children.add(child);
     		child.parent = this;
     	}
     	
-    	public void addParent(Node parent) {
+    	public void addParent(Node parent) 
+    	{
     		this.parent = parent;
     	}
     	
-    	public Node getParent(){
+    	public Node getParent()
+    	{
     		return this.parent;
     	}
     	
-    	public String getRawData() {
+    	public String getRawData() 
+    	{
     		return this.rawData;
     	}
     	
-    	public boolean isLeaf() {
+    	public boolean isLeaf() 
+    	{
     		if(this.children.isEmpty()) 
     			return true;
     		
     		return false;
     	}
-    	public boolean hasAttribute() {
+    	public boolean hasAttribute() 
+    	{
     		if(!this.attributes.isEmpty())
     			return true;
     		return false;
     	}
-    	public List<HTMLAttribute> getAttributes() {
+    	public List<HTMLAttribute> getAttributes() 
+    	{
     		return this.attributes;
+    	}
+    	public void setLevel(int level) 
+    	{
+    		this.level = level;
+    	}
+    	public int getLevel() {
+    		return this.level;
     	}
     }

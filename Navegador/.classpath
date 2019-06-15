@@ -6,6 +6,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="navegador/" kind="src" path="src"/>
-	<classpathentry kind="src" path="src/navegador"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

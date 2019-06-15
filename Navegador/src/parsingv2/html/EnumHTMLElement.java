@@ -14,9 +14,7 @@ package parsingv2.html;
  * @param textEffect		Efeito de texto (negrito, alinhamento, etc)
  */
 public enum EnumHTMLElement {
-//	HTML("html",false, false),
-//    HEAD("head",false, false),
-//    BODY("body",false, true);
+	//			tagname		omission	render	textEffect
 	A			("a", 			false, 	true,	"href"),
 		//!acronym  (not supported)
     	//!abbr

@@ -351,7 +351,7 @@ public class Run {
 				"</html>";
 		
 		// Document faz o parse do HTML
-		Document dok = Document.parseHTML(new Document(), null, exampleHtml);
+		Document dok = Document.factory(exampleHtml);
 		
 		System.out.println("linebreak");
 		

@@ -120,7 +120,7 @@ public enum EnumHTMLElement {
     	//!ruby
     	//!s
     	//!samp
-    SCRIPT		("script", 		false,	false,	"none"),
+    //SCRIPT		("script", 		false,	false,	"none"), // script descabilitado
     SECTION		("section", 	false,	true,	"none"),
     SELECT		("select", 		false,	true,	"none"),
     	//!shadow

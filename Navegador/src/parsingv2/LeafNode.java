@@ -3,8 +3,8 @@ package parsingv2;
 import javax.swing.JComponent;
 
 public abstract class LeafNode extends Node {
-	public LeafNode() {
-		super();
+	public LeafNode(String rawData) {
+		super(rawData);
 	}
 	
 	

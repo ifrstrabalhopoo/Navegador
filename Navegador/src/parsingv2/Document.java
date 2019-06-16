@@ -21,7 +21,7 @@ public class Document {
 	private static final Pattern PATTERN_OPEN_TAG = Pattern.compile(REGEX_OPEN_TAG,
 			Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
 	
-	private List<Node> nodesList = new ArrayList<Node>();
+	public List<Node> nodesList = new ArrayList<Node>();
 	
 	private Document() {
 		// instanciado apenas via factory
@@ -49,6 +49,10 @@ public class Document {
 				// gera tags fechadas
 				while(fechadasMatchCount > 0 && matchClosedTags.find()) 						// tem tag
 				{
+					String MSTR = matchClosedTags.toString();
+					String group2 = matchClosedTags.group(2);
+					String mGroup3 = matchClosedTags.group(3);
+					String mgroup5 = matchClosedTags.group(5);
 					fechadasMatchCount--;
 					String tag = matchClosedTags.group(2);
 					String nodeData = matchClosedTags.group(3);
@@ -75,7 +79,7 @@ public class Document {
 			if(abertasMatchCount > 0)
 			{
 				
-				while(abertasMatchCount > 0 && matchOpenTags.find()) // gera tags abertas
+				while(abertasMatchCount > 0 && matchOpenTags.find()) 				// gera tags abertas
 				{
 					abertasMatchCount--;
 					String tag = matchOpenTags.group(3);
@@ -93,11 +97,13 @@ public class Document {
 		{
 			Document.geraTextNode(doc, parent, htmlInput, step);
 			step++;
+			return doc;
 		}
 		
+		return null;
 		
-		return doc;
 	}
+	
 	/**
 	 * Parse HTML antigo, algoritmo incompleto, não utilizar
 	 * @deprecated
@@ -174,7 +180,9 @@ public class Document {
 	{
 		Document doc = new Document();
 		Document.parseHTMLv2(doc, null, html, 0);
-		
+		doc.nodesList.forEach(node -> {
+			node.processAttributes();
+		});
 		return doc;
 	}
 	
@@ -187,10 +195,12 @@ public class Document {
 	 */
 	private static void gerarRaiz(Document doc, String tag, String nodeData, String nextHtml, int step) 
 	{
-		doc.html = new Tree(tag, nodeData);
-		doc.html.getRoot().setLevel(step);
-		doc.nodesList.add(doc.html.getRoot());
-		Document.parseHTMLv2(doc, doc.html.getRoot(), nextHtml, step);
+		if(EnumHTMLElement.contains(tag)) {
+			doc.html = new Tree(tag, nodeData);
+			doc.html.getRoot().setLevel(step);
+			doc.nodesList.add(doc.html.getRoot());
+			Document.parseHTMLv2(doc, doc.html.getRoot(), nextHtml, step);
+		}
 	}
 	
 	/**
@@ -203,11 +213,23 @@ public class Document {
 	 */
 	private static void geraNode(Document doc, Node parent, String tag, String nodeData, String nextHtml, int step) 
 	{
-		Node newNode = Node.makeNode(tag, nodeData);
-		parent.addChild(newNode);
-		newNode.setLevel(step);
-		doc.nodesList.add(newNode);
-		Document.parseHTMLv2(doc, newNode, nextHtml, step);
+		if(EnumHTMLElement.contains(tag)) 
+		{
+			if(tag.equals("img"))
+			{
+				Node newImgNode = new ImageNode(nodeData, parent);
+				parent.addChild(newImgNode);
+				newImgNode.setLevel(step);
+				doc.nodesList.add(newImgNode);
+				return;
+			}
+			Node newNode = Node.makeNode(tag, nodeData);
+			parent.addChild(newNode);
+			newNode.setLevel(step);
+			doc.nodesList.add(newNode);
+			Document.parseHTMLv2(doc, newNode, nextHtml, step);
+		}
+		
 	}
 	
 	/**
@@ -218,10 +240,10 @@ public class Document {
 	 */
 	private static void geraTextNode(Document doc, Node parent, String text, int step)
 	{
-		Node newTextNode = new TextNode(text, parent);
-		newTextNode.setLevel(step);
-		doc.nodesList.add(newTextNode);
-		parent.addChild(newTextNode);
+			Node newTextNode = new TextNode(text, parent);
+			newTextNode.setLevel(step);
+			doc.nodesList.add(newTextNode);
+			parent.addChild(newTextNode);
 	}
 	
 	/**
@@ -268,7 +290,10 @@ public class Document {
 			return true;
 		return false;
 	}
-	
+	/**
+	 * Apenas para testar, gera uma String formatada com a lista das tags
+	 * @return
+	 */
 	public String getTreeString()
 	{
 		StringBuilder buffer = new StringBuilder("HTML Tree:");

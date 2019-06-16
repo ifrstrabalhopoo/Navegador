@@ -1,5 +1,8 @@
 package parsingv2;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
 
 public class Run {
 	public static void main(String[] args) {
@@ -350,30 +353,67 @@ public class Run {
 				"\n" + 
 				"</html>";
 		
-		// Document faz o parse do HTML
-		Document dok = Document.factory(exampleHtml);
-		System.out.println(dok.getTreeString());
+		String exampleHtml2 = "\n" + 
+				"<html>\n" + 
+				"<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" + 
+				"<head>\n" + 
+				"    <title>Pudim</title>\n" + 
+				"    <link rel=\"stylesheet\" href=\"estilo.css\">\n" + 
+				"</head>\n" + 
+				"<body>\n" + 
+				"<div>\n" + 
+				"    <div class=\"container\">\n" + 
+				"        <div class=\"image\">\n" + 
+				"            <img src=\"pudim.jpg\" alt=\"\">\n" + 
+				"        </div>\n" + 
+				"        <div class=\"email\">\n" + 
+				"            <a href=\"mailto:pudim@pudim.com.br\">pudim@pudim.com.br</a>\n" + 
+				"        </div>\n" + 
+				"    </div>\n" + 
+				"</div>\n" + 
+				"<script>\n" + 
+				"    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n" + 
+				"                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n" + 
+				"            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n" + 
+				"    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n" + 
+				"\n" + 
+				"    ga('create', 'UA-28861757-1', 'auto');\n" + 
+				"    ga('send', 'pageview');\n" + 
+				"\n" + 
+				"</script>\n" + 
+				"</body>\n" + 
+				"</html>\n" + 
+				"";
 		
-//		String regex = "(<??)([A-Z][A-Z0-9]*)(\\b[^>]*>)([.\\s\\S]*?)<\\/\\2>";
-//		Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
-//		
-//		Matcher m = p.matcher(exampleHtml);
-////		
-////		boolean matches = m.matches();
-////		boolean find = m.find();
-////		int groups = m.groupCount();
-//
-//		while(m.find()) {
-//			System.out.println(m.group(0));
-//			String next = m.group(4);
-//			System.out.println(next);
-//		}
-//		
-//		
-//		
-//		
-//		System.out.println();
-//	
+		// Document faz o parse do HTML
+		Document dok = Document.factory(exampleHtml2);
+		System.out.println(dok.getTreeString());
+
+		//janela para teste
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					WindowRunTest window = new WindowRunTest();
+					window.getFrame().setVisible(true);
+
+					dok.nodesList.forEach(node -> {
+						if(node instanceof LeafNode)
+						{
+							window.panel.add(((LeafNode) node).getRenderedComponent());
+						}
+					});
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		
 		}
+	
+
+	
 }
+

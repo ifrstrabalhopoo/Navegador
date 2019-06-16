@@ -1,6 +1,9 @@
 package parsingv2;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 import parsingv2.html.EnumHTMLElement;
 import parsingv2.html.HTMLAttribute;
@@ -21,14 +24,11 @@ public class Node {
 		protected Node 				parent = null;
 		protected int				level = 0;
 
-		protected Node() {
-			
-		}
 		/**
 		 * Gera um node com uma string denominano o tag name
 		 * @param data tagname
 		 */
-    	public Node(String data) {
+    	protected Node(String data) {
     		this.rawData = data;
     	}
     	/**
@@ -36,7 +36,7 @@ public class Node {
     	 * @param data tagname
     	 * @param parent node pai
     	 */
-    	public Node(String data, Node parent) {
+    	protected Node(String data, Node parent) {
     		this.rawData = data;
     		this.parent = parent;
     	}
@@ -48,8 +48,7 @@ public class Node {
     	 * @return Novo nó
     	 */
     	public static Node makeNode(String tagname, String data, Node parent) {
-    		Node node 			= new Node();
-    		node.rawData 		= Node.parseData(data);
+    		Node node 			= new Node(data);
     		node.tagName 	= tagname;
     		node.tag		= EnumHTMLElement.fromString(tagname);
     		node.parent		= parent;
@@ -63,8 +62,7 @@ public class Node {
     	 */
     	public static Node makeNode(String tagname, String data) 
     	{
-    		Node node 			= new Node();
-    		node.rawData 		= Node.parseData(data);
+    		Node node 			= new Node(data);
     		node.tagName 		= tagname;
     		node.tag			= EnumHTMLElement.fromString(tagname);
     		return node;
@@ -76,20 +74,6 @@ public class Node {
     	public List<Node> getChildren() 
     	{
     		return this.children;
-    	}
-    	/**
-    	 * Faz o parse dos dados da tag, null se não houver
-    	 * @param data
-    	 * @return
-    	 */
-    	protected static String parseData(String data) 
-    	{
-    		if(data == null) return null;
-    		String result = data.replace(">", "");
-    		result = result.trim();
-    		if(result.isEmpty()) 
-    			return null;
-    		return result;
     	}
     	public void addChild(Node child) 
     	{
@@ -135,5 +119,31 @@ public class Node {
     	}
     	public int getLevel() {
     		return this.level;
+    	}
+    	
+    	public void processAttributes() 
+    	{
+    		if(!(this instanceof TextNode))
+    		{
+        		String attributesRegex = "(\\S+)\\s*=\\s*([']|[\"])\\s*([\\W\\w]*?)\\s*\\2";
+        		Pattern pat = Pattern.compile(attributesRegex);
+        		String data =this.rawData;
+        		
+        		Matcher m = pat.matcher(data);
+        		
+        		while(m.find())
+        		{
+        			HTMLAttribute newAttribute = new HTMLAttribute(m.group(1), m.group(3));
+        			//TODO: TRATAR ATRIBUTO SRC
+        			this.attributes.add(newAttribute);
+        		}
+    		}
+    		
+    	}
+    	
+    	@Override
+    	public String toString()
+    	{
+    		return this.tagName;
     	}
     }

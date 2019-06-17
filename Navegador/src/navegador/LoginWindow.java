@@ -37,7 +37,6 @@ public class LoginWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Informe login e senha");
         setMinimumSize(new java.awt.Dimension(400, 120));
-        setPreferredSize(new java.awt.Dimension(400, 100));
         setResizable(false);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,6 +51,11 @@ public class LoginWindow extends javax.swing.JFrame {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-ok.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-cancela.png"))); // NOI18N
         jButton5.setContentAreaFilled(false);
@@ -102,6 +106,10 @@ public class LoginWindow extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

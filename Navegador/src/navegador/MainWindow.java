@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package navegador;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,13 +10,11 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import swing.JanelaSwing;
+import javax.swing.JFrame;
 
-/**
- *
- * @author allan.210894
- */
 public class MainWindow extends javax.swing.JFrame {
+    
+    JFrame JanelaLogin = new LoginWindow();
 
     /**
      * Creates new form Window
@@ -37,30 +32,25 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        textField1 = new java.awt.TextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnFavoritos = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
+        campoURL = new java.awt.TextField();
+        btnAvancar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
+        btnRecarregar = new javax.swing.JButton();
+        btnIr = new javax.swing.JButton();
+        btnHistorico = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
 
-        jMenuItem1.setText("jMenuItem1");
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
 
-        jMenuItem2.setText("jMenuItem2");
-
-        jMenuItem3.setText("jMenuItem3");
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+        jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Supimpa Browser");
@@ -68,63 +58,113 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-favorito.png"))); // NOI18N
-        jButton3.setContentAreaFilled(false);
-        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
-        jButton3.setRequestFocusEnabled(false);
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-home.png"))); // NOI18N
-        jButton4.setContentAreaFilled(false);
-        jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
-        jButton4.setRequestFocusEnabled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        btnFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-favorito.png"))); // NOI18N
+        btnFavoritos.setContentAreaFilled(false);
+        btnFavoritos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnFavoritos.setRequestFocusEnabled(false);
+        btnFavoritos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFavoritosMouseClicked(evt);
             }
         });
 
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-home.png"))); // NOI18N
+        btnHome.setContentAreaFilled(false);
+        btnHome.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnHome.setRequestFocusEnabled(false);
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                btnHomeActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-direita.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.setFocusPainted(false);
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-esquerda.png"))); // NOI18N
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton2.setFocusPainted(false);
-        jButton2.setName(""); // NOI18N
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-reload.png"))); // NOI18N
-        jButton5.setContentAreaFilled(false);
-        jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
-        jButton5.setRequestFocusEnabled(false);
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-vai.png"))); // NOI18N
-        jButton6.setContentAreaFilled(false);
-        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
-        jButton6.setRequestFocusEnabled(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        campoURL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                campoURLActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-ferramenta.png"))); // NOI18N
-        jButton7.setContentAreaFilled(false);
-        jButton7.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
-        jButton7.setRequestFocusEnabled(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-direita.png"))); // NOI18N
+        btnAvancar.setContentAreaFilled(false);
+        btnAvancar.setFocusPainted(false);
+        btnAvancar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnAvancar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAvancarMouseClicked(evt);
+            }
+        });
+
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-esquerda.png"))); // NOI18N
+        btnVoltar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnVoltar.setContentAreaFilled(false);
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setName(""); // NOI18N
+        btnVoltar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
+
+        btnRecarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-reload.png"))); // NOI18N
+        btnRecarregar.setContentAreaFilled(false);
+        btnRecarregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnRecarregar.setRequestFocusEnabled(false);
+        btnRecarregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRecarregarMouseClicked(evt);
+            }
+        });
+
+        btnIr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-vai.png"))); // NOI18N
+        btnIr.setContentAreaFilled(false);
+        btnIr.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnIr.setRequestFocusEnabled(false);
+        btnIr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIrMouseClicked(evt);
+            }
+        });
+        btnIr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnIrActionPerformed(evt);
+            }
+        });
+
+        btnHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-ferramenta.png"))); // NOI18N
+        btnHistorico.setContentAreaFilled(false);
+        btnHistorico.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnHistorico.setRequestFocusEnabled(false);
+        btnHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHistoricoMouseClicked(evt);
+            }
+        });
+        btnHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoricoActionPerformed(evt);
+            }
+        });
+
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-login.png"))); // NOI18N
+        btnLogin.setContentAreaFilled(false);
+        btnLogin.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnLogin.setRequestFocusEnabled(false);
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLoginMouseClicked(evt);
+            }
+        });
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -134,38 +174,46 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addComponent(campoURL, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIr, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(btnHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoURL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnAvancar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnFavoritos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnHistorico, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(btnIr, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(btnLogin)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jEditorPane1.setEditable(false);
@@ -176,7 +224,7 @@ public class MainWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,34 +237,82 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void campoURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoURLActionPerformed
         URL website = null;
         ReadableByteChannel rbc = null;
         FileOutputStream fos = null;
         try {
             website = new URL("http://www.website.com/information.asp");
-            rbc = Channels.newChannel(website.openStream());
-            fos = new FileOutputStream("information.html");
-            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+            //rbc = Channels.newChannel(website.openStream());
         } catch (MalformedURLException ex) {
-            Logger.getLogger(JanelaSwing.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(JanelaSwing.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_textField1ActionPerformed
+        try {
+            rbc = Channels.newChannel(website.openStream());
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            fos = new FileOutputStream("information.html");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_campoURLActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnIrActionPerformed
+
+    private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHistoricoActionPerformed
+
+    private void btnFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritosMouseClicked
+        System.out.println("Ao clicar, adicionar no array de favoritos e exibir um aviso: Página adicionada");
+    }//GEN-LAST:event_btnFavoritosMouseClicked
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        System.out.println("Voltar página");
+    }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void btnAvancarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAvancarMouseClicked
+        System.out.println("Avançar página");
+    }//GEN-LAST:event_btnAvancarMouseClicked
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        System.out.println("Página padrão (Adicionar um HTML padrão do navegador e retornar para o mesmo)");
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnRecarregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecarregarMouseClicked
+        System.out.println("Chama os métodos parse e render novamente, do HTML presente no campo de link");
+    }//GEN-LAST:event_btnRecarregarMouseClicked
+
+    private void btnIrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIrMouseClicked
+        System.out.println("Chamar parse e render para carregar a página HTML inserida");
+    }//GEN-LAST:event_btnIrMouseClicked
+
+    private void btnHistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoricoMouseClicked
+        System.out.println("Exibe um popup de histórico do usuário logado");
+    }//GEN-LAST:event_btnHistoricoMouseClicked
+
+    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+        JanelaLogin.setVisible(true);
+    }//GEN-LAST:event_btnLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -255,20 +351,19 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JButton btnAvancar;
+    private javax.swing.JButton btnFavoritos;
+    private javax.swing.JButton btnHistorico;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnIr;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRecarregar;
+    private javax.swing.JButton btnVoltar;
+    private java.awt.TextField campoURL;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }

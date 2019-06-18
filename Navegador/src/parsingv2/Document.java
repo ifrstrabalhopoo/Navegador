@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+import helper.exception.NavegadorUtils;
 import parsingv2.html.EnumHTMLElement;
 
 public class Document {
@@ -27,11 +27,43 @@ public class Document {
 		// instanciado apenas via factory
 	}
 	
+	private void parseHTML(Node lastParent, String html)
+	{
+		Node nextParent = lastParent;
+		String nextHtml = html;
+		
+		if(html.isEmpty() || html == null)
+		{
+			return;
+		}
+		
+		if(lastParent == null) {
+			Matcher matchClosedTags = PATTERN_CLOSED_TAG.matcher(html);
+			int matchCount = Document.contaMatches(matchClosedTags);
+			if(matchCount > 0)
+			{
+				
+				
+				String tag = matchClosedTags.group(2);
+				String nodeData = matchClosedTags.group(3);
+				nextHtml = NavegadorUtils.removetag(tag, "html");
+			}
+			else 
+			{
+				return;
+			}
+		}
+		
+		
+		
+	}
+	
 	/**
 	 * Faz o parsing de uma string html (htmlInput)
 	 * @param doc Documento será resultado do parsing
 	 * @param parent
 	 * @param htmlInput
+	 * @deprecated
 	 * @return
 	 */
 	private static Document parseHTMLv2(Document doc, Node parent, String htmlInput, int step) {
@@ -112,7 +144,8 @@ public class Document {
 	 * @param htmlInput
 	 * @return
 	 */
-	private static Document parseHTML(Document doc, Node parent, String htmlInput) {
+	@SuppressWarnings("unused")
+	private static Document parseHTMLv1(Document doc, Node parent, String htmlInput) {
 		
 		Matcher m = PATTERN_CLOSED_TAG.matcher(htmlInput);
 		
@@ -144,25 +177,25 @@ public class Document {
 				
 				if(!Document.isTagEnabled(tag)) 			// se a tag não for permitida filtra e remove
 				{ 
-					Document.parseHTML(doc, parent, nextHtml);
+					Document.parseHTMLv1(doc, parent, nextHtml);
 				}
 				else if(doc.isEmpty()) 						// se for a primeira tag do documento inicializa a árvore html
 				{ 
 					doc.html = new Tree(tag, nodeData);
-					Document.parseHTML(doc, doc.html.getRoot(), nextHtml);
+					Document.parseHTMLv1(doc, doc.html.getRoot(), nextHtml);
 				}
 				else if(parent == doc.html.getRoot())		// se for filho da raiz 
 				{ 
 					Node newNode = Node.makeNode(tag, nodeData, doc.html.getRoot());
 					doc.html.getRoot().addChild(newNode);
-					Document.parseHTML(doc, newNode, nextHtml);
+					Document.parseHTMLv1(doc, newNode, nextHtml);
 				}
 				//TODO: Node: isLeaf?
 				else 										// node normal
 				{
 					Node newNode = Node.makeNode(tag, nodeData, parent);
 					parent.addChild(newNode);
-					Document.parseHTML(doc, newNode, nextHtml);
+					Document.parseHTMLv1(doc, newNode, nextHtml);
 				}
 			
 		}
@@ -185,6 +218,19 @@ public class Document {
 		});
 		return doc;
 	}
+	/**
+	 * Gera a raiz do documento
+	 * @param doc
+	 * @param tag
+	 * @param nodeData
+	 * @param nextHtml
+	 * @return
+	 */
+	private Node generateRoot(Document doc, String tag, String nodeData, String nextHtml) 
+	{
+		doc.html = new Tree(tag, nodeData);
+		return doc.html.getRoot();
+	}
 	
 	/**
 	 * Gera a raiz do documento
@@ -192,6 +238,7 @@ public class Document {
 	 * @param tag
 	 * @param nodeData
 	 * @param nextHtml
+	 * @deprecated
 	 */
 	private static void gerarRaiz(Document doc, String tag, String nodeData, String nextHtml, int step) 
 	{

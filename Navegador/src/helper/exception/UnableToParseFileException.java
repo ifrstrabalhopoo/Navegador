@@ -23,7 +23,12 @@ package helper.exception;
  */
 public class UnableToParseFileException extends RuntimeException{
 
-    public UnableToParseFileException() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public UnableToParseFileException() {
     }
 
     public UnableToParseFileException(String msg) {

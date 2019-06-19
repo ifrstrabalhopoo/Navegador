@@ -1,0 +1,20 @@
+href            link retirado do href
+textBold        negrito
+textInverted    inverte (da esquerda pra direita)
+displayNewline  nova linha
+asButton        rederiza um botão ao invés de texto
+textCenter      centraliza do texto
+horizontalRuler cria um HR
+displayImage    pega o src da tag e mostra a imagem contida no link
+textAsLabel     renderiza um texto normal
+textAsListItem  mostra uma bolinha antes to texto indicanto ser um item de uma lista
+textMarked      mostra o texto com fundo colorido, destacado
+textSmall       mostra o texto pequeno
+
+
+(<??)([A-Z][A-Z0-9]*)(\b[^>]*>)([.\s\S]*?)<\/\2> CLOSED TAG
+([.\s\S]*?)(<){1}([A-Z][A-Z0-9]*)(\b[^>]*>)
+
+(<){1}([A-Z][A-Z0-9]*)(\\b[^>]*)(>) OPEN TAG
+
+((<??)([A-Z][A-Z0-9]*)(\\b[^>]*)(>)([.\\s\\S]*?)(<\\/\\3>))|((<){1}([A-Z][A-Z0-9]*)(\\b[^>]*)(>))

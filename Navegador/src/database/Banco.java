@@ -15,15 +15,24 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package login;
+package database;
 
 /**
  *
  * @author gustavo.250195
  */
-public class Login {
+public class Banco {
+    public void addHistorico(String URL){
+        
+    }
+    
     public void logar(String login, String senha){
         System.out.println("Recebido login: " + login);
         System.out.println("Recebido senha: " + senha);
+    }
+    
+    public void addFavorito(String URL){
+        
+    
     }
 }

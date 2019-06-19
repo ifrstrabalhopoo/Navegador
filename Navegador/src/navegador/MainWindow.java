@@ -11,10 +11,12 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import database.Banco;
 
 public class MainWindow extends javax.swing.JFrame {
     
     JFrame JanelaLogin = new LoginWindow();
+    Banco banco = new Banco();
     
     /**
      * Creates new form Window
@@ -65,6 +67,11 @@ public class MainWindow extends javax.swing.JFrame {
         btnFavoritos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnFavoritosMouseClicked(evt);
+            }
+        });
+        btnFavoritos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFavoritosActionPerformed(evt);
             }
         });
 
@@ -247,7 +254,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void campoURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoURLActionPerformed
-        URL website = null;
+     /*   URL website = null;
         ReadableByteChannel rbc = null;
         FileOutputStream fos = null;
         try {
@@ -272,7 +279,8 @@ public class MainWindow extends javax.swing.JFrame {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         } catch (IOException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        banco.addHistorico(campoURL.getText());
     }//GEN-LAST:event_campoURLActionPerformed
 
     private void btnIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrActionPerformed
@@ -322,6 +330,11 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
+        System.out.println("Adiciona o endereço que está no campo URL aos favoritos");
+        banco.addFavorito(campoURL.getText());
+    }//GEN-LAST:event_btnFavoritosActionPerformed
 
     /**
      * @param args the command line arguments

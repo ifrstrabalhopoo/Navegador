@@ -1,6 +1,7 @@
 package navegador;
 
-import login.Login;
+import database.Banco;
+
 
 
 public class LoginWindow extends javax.swing.JFrame {
@@ -12,7 +13,7 @@ public class LoginWindow extends javax.swing.JFrame {
         initComponents();
     }
 
-    Login login = new Login();
+    Banco banco = new Banco();
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,7 +118,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void btnLogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogarMouseClicked
         System.out.println("Adicionar, caso o login seja diferente de um já existente, um ID_AUTOINCREMENT");
-        login.logar(campologin.getText(), camposenha.getText());
+        banco.logar(campologin.getText(), camposenha.getText());
     }//GEN-LAST:event_btnLogarMouseClicked
 
     /**

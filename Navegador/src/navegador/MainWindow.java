@@ -69,11 +69,6 @@ public class MainWindow extends javax.swing.JFrame {
                 btnFavoritosMouseClicked(evt);
             }
         });
-        btnFavoritos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFavoritosActionPerformed(evt);
-            }
-        });
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-home.png"))); // NOI18N
         btnHome.setContentAreaFilled(false);
@@ -82,17 +77,6 @@ public class MainWindow extends javax.swing.JFrame {
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
-            }
-        });
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-
-        campoURL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoURLActionPerformed(evt);
             }
         });
 
@@ -119,11 +103,6 @@ public class MainWindow extends javax.swing.JFrame {
                 btnVoltarMouseClicked(evt);
             }
         });
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
-            }
-        });
 
         btnRecarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-reload.png"))); // NOI18N
         btnRecarregar.setContentAreaFilled(false);
@@ -144,11 +123,6 @@ public class MainWindow extends javax.swing.JFrame {
                 btnIrMouseClicked(evt);
             }
         });
-        btnIr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIrActionPerformed(evt);
-            }
-        });
 
         btnHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-ferramenta.png"))); // NOI18N
         btnHistorico.setContentAreaFilled(false);
@@ -159,11 +133,6 @@ public class MainWindow extends javax.swing.JFrame {
                 btnHistoricoMouseClicked(evt);
             }
         });
-        btnHistorico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHistoricoActionPerformed(evt);
-            }
-        });
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-login.png"))); // NOI18N
         btnLogin.setContentAreaFilled(false);
@@ -172,11 +141,6 @@ public class MainWindow extends javax.swing.JFrame {
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLoginMouseClicked(evt);
-            }
-        });
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
             }
         });
 
@@ -249,55 +213,9 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void campoURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoURLActionPerformed
-     /*   URL website = null;
-        ReadableByteChannel rbc = null;
-        FileOutputStream fos = null;
-        try {
-            website = new URL("http://www.website.com/information.asp");
-            //rbc = Channels.newChannel(website.openStream());
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            rbc = Channels.newChannel(website.openStream());
-        } catch (IOException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            fos = new FileOutputStream("information.html");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-        } catch (IOException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        banco.addHistorico(campoURL.getText());
-    }//GEN-LAST:event_campoURLActionPerformed
-
-    private void btnIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIrActionPerformed
-
-    private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHistoricoActionPerformed
-
     private void btnFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritosMouseClicked
-        System.out.println("Ao clicar, adicionar no array de favoritos e exibir um aviso: Página adicionada");
+        banco.addFavorito(campoURL.getText());
     }//GEN-LAST:event_btnFavoritosMouseClicked
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         System.out.println("Voltar página");
@@ -326,15 +244,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         JanelaLogin.setVisible(true);
     }//GEN-LAST:event_btnLoginMouseClicked
-
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
-
-    private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
-        System.out.println("Adiciona o endereço que está no campo URL aos favoritos");
-        banco.addFavorito(campoURL.getText());
-    }//GEN-LAST:event_btnFavoritosActionPerformed
 
     /**
      * @param args the command line arguments

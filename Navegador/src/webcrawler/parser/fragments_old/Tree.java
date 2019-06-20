@@ -1,4 +1,4 @@
-package parsingv2;
+package webcrawler.parser.fragments_old;
 
 public class Tree {
     private Node root;

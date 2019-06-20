@@ -1,18 +1,21 @@
 
 package webcrawler;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Classe criada apenas para métodos de busca de html via URL
  * @author Everton Crespin da Silva
  */
 public class HTMLFetcher {
-    public static String getURLAsSring(String url) 
+    public static String getURLAsSring(String url) throws IOException 
     {
         HttpURLConnection.setFollowRedirects(true); // defaults to true
         String result = null;
@@ -28,12 +31,20 @@ public class HTMLFetcher {
             result = connScanner.hasNext() ? connScanner.next() : "";
             
         } catch (MalformedURLException ex) {
-            ex.printStackTrace();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+            //faz nada, este erro será tratado em outro método
+        } 
         
         return result;
     }
+    
+    public static boolean validaURL(String url)
+    {
+        try {
+            URL validated = new URL(url);
+        } catch (MalformedURLException ex) {
+            return false;
+        }
+        return true;
+    }
+    
 }

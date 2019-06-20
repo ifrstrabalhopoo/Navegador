@@ -60,9 +60,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-favorito.png"))); // NOI18N
         btnFavoritos.setContentAreaFilled(false);
-        btnFavoritos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnFavoritos.setRequestFocusEnabled(false);
         btnFavoritos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,9 +73,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-home.png"))); // NOI18N
         btnHome.setContentAreaFilled(false);
-        btnHome.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnHome.setRequestFocusEnabled(false);
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,24 +92,20 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-direita.png"))); // NOI18N
         btnAvancar.setContentAreaFilled(false);
         btnAvancar.setFocusPainted(false);
-        btnAvancar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnAvancar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAvancarMouseClicked(evt);
             }
         });
 
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-esquerda.png"))); // NOI18N
         btnVoltar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnVoltar.setContentAreaFilled(false);
         btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVoltar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         btnVoltar.setFocusPainted(false);
         btnVoltar.setName(""); // NOI18N
-        btnVoltar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVoltarMouseClicked(evt);
@@ -125,9 +117,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnRecarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-reload.png"))); // NOI18N
         btnRecarregar.setContentAreaFilled(false);
-        btnRecarregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnRecarregar.setRequestFocusEnabled(false);
         btnRecarregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -135,9 +125,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnIr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-vai.png"))); // NOI18N
         btnIr.setContentAreaFilled(false);
-        btnIr.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnIr.setRequestFocusEnabled(false);
         btnIr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -150,9 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-ferramenta.png"))); // NOI18N
         btnHistorico.setContentAreaFilled(false);
-        btnHistorico.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnHistorico.setRequestFocusEnabled(false);
         btnHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -165,9 +151,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-login.png"))); // NOI18N
         btnLogin.setContentAreaFilled(false);
-        btnLogin.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnLogin.setRequestFocusEnabled(false);
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -336,41 +320,7 @@ public class MainWindow extends javax.swing.JFrame {
         banco.addFavorito(campoURL.getText());
     }//GEN-LAST:event_btnFavoritosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvancar;

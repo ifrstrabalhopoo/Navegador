@@ -11,6 +11,9 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+        MainWindow main = new MainWindow();
+        this.getContentPane().add(main);
+        main.setVisible(true);
     }
 
     Banco banco = new Banco();
@@ -40,7 +43,6 @@ public class LoginWindow extends javax.swing.JFrame {
 
         jLabel4.setText("Senha");
 
-        btnLogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-ok.png"))); // NOI18N
         btnLogar.setContentAreaFilled(false);
         btnLogar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -53,7 +55,6 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-cancela.png"))); // NOI18N
         jButton5.setContentAreaFilled(false);
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

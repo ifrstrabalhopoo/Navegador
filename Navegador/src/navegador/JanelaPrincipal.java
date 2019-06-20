@@ -28,8 +28,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      */
     public JanelaPrincipal() {
         initComponents();
-        MainWindow main = new MainWindow();
-        this.add(main);
+        
     }
 
     /**

@@ -18,7 +18,7 @@ public class WEBParser {
 	
 	private List<TagToken> tags = new ArrayList<>();
 	private List<DataToken> datas = new ArrayList<>();
-	private List<Token> stack = new ArrayList<>();
+	private List<Token> tokens = new ArrayList<>();
 	private State state = State.DATA;
 	StrIterator chars;
 	
@@ -39,6 +39,7 @@ public class WEBParser {
 			tokenizeData();
 		}
 	}
+	
 	private void tokenizeData() 
 	{
 		DataToken token = new DataToken();
@@ -52,7 +53,7 @@ public class WEBParser {
 			else
 			{ 
 				if(token.isValid()) 
-					{datas.add(token); stack.push(token); }
+					{datas.add(token); tokens.add(token); }
 				state = State.TAG; 
 				tokenizeTag(); 
 			}
@@ -75,19 +76,46 @@ public class WEBParser {
 			{
 				token.consume(chars.current());
 				if(token.isValid())
-					{ tags.add(token); stack.push(token); }
+					{ tags.add(token); tokens.add(token); }
 				state = State.DATA;
 				tokenizeData();
 			}
 		}
 		
 	}
-	
 	public void makeTokenTree() {
-		Stack<Token> stack = new Stack<>();
+		Stack<TagToken> lastParent = new Stack<>();
+		
+		tokens.forEach((token) -> {
+			if(token.isTagToken()) {
+				TagToken tk = (TagToken) token;
+				
+				if(	tk.isClosingTag()
+					&&				// Se a tag for de fechamento e o nome é igual à ultima tag aberta
+					tk.getTagName().equals(lastParent.peek().getTagName())
+					) 
+				{
+					lastParent.pop();
+				}
+				else if (!tk.isClosingTag() && !tk.isOmitiveTag()) {
+					
+					if(!lastParent.empty())
+						tk.parent = lastParent.peek();
+					
+					lastParent.push(tk);
+				}
+			}
+			else
+			{
+				if(!lastParent.empty())
+					token.parent = lastParent.peek();
+			}
+		});
+	}
+	private void tokensToNodes() 
+	{
 		
 	}
-	
 	
 //	public void parse(StrIterator chars) 
 //	{

@@ -38,7 +38,7 @@ public class HTMLFetcher {
             InputStream inStream = http_conn.getInputStream();
             Scanner connScanner = new Scanner(inStream).useDelimiter("\\A");
             result = connScanner.hasNext() ? connScanner.next() : "";
-            
+            connScanner.close();
         
         return result;
     }

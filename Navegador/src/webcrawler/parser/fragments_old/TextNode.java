@@ -1,6 +1,4 @@
-package parsingv2;
-
-import parsingv2.html.EnumHTMLElement;
+package webcrawler.parser.fragments_old;
 
 public class TextNode extends Node{
 	

@@ -1,4 +1,4 @@
-package parsingv2.html;
+package webcrawler.parser.fragments_old;
 
 /**
  * Contem os elementos HTML (Tags) que o parser irá suportar,

@@ -55,14 +55,14 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Supimpa Browser");
+        setTitle("Lalala");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-favorito.png"))); // NOI18N
+        btnFavoritos.setText("Fav");
         btnFavoritos.setContentAreaFilled(false);
-        btnFavoritos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnFavoritos.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnFavoritos.setRequestFocusEnabled(false);
         btnFavoritos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -70,9 +70,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-home.png"))); // NOI18N
+        btnHome.setText("H");
         btnHome.setContentAreaFilled(false);
-        btnHome.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnHome.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnHome.setRequestFocusEnabled(false);
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -80,33 +80,35 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-direita.png"))); // NOI18N
+        btnAvancar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        btnAvancar.setText("Nex");
         btnAvancar.setContentAreaFilled(false);
         btnAvancar.setFocusPainted(false);
-        btnAvancar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnAvancar.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnAvancar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAvancarMouseClicked(evt);
             }
         });
 
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-esquerda.png"))); // NOI18N
+        btnVoltar.setBackground(new java.awt.Color(255, 102, 102));
+        btnVoltar.setText("<");
         btnVoltar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnVoltar.setContentAreaFilled(false);
         btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVoltar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         btnVoltar.setFocusPainted(false);
         btnVoltar.setName(""); // NOI18N
-        btnVoltar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
         btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVoltarMouseClicked(evt);
             }
         });
 
-        btnRecarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-reload.png"))); // NOI18N
+        btnRecarregar.setBackground(new java.awt.Color(204, 0, 102));
+        btnRecarregar.setText("Re");
         btnRecarregar.setContentAreaFilled(false);
-        btnRecarregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnRecarregar.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnRecarregar.setRequestFocusEnabled(false);
         btnRecarregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,9 +116,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnIr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-vai.png"))); // NOI18N
+        btnIr.setText("Ir");
         btnIr.setContentAreaFilled(false);
-        btnIr.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnIr.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnIr.setRequestFocusEnabled(false);
         btnIr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -124,9 +126,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-ferramenta.png"))); // NOI18N
+        btnHistorico.setText("His");
         btnHistorico.setContentAreaFilled(false);
-        btnHistorico.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnHistorico.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnHistorico.setRequestFocusEnabled(false);
         btnHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -134,9 +136,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/flat-login.png"))); // NOI18N
+        btnLogin.setText("Log");
         btnLogin.setContentAreaFilled(false);
-        btnLogin.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/navegador/bitmaps/blank.png"))); // NOI18N
+        btnLogin.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnLogin.setRequestFocusEnabled(false);
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,36 +162,34 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoURL, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIr, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIr, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoURL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnAvancar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnFavoritos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnHistorico, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(btnIr, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(btnLogin)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHistorico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoURL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnAvancar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFavoritos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRecarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnIr, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
         jEditorPane1.setEditable(false);

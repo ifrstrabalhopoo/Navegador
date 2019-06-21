@@ -1,9 +1,9 @@
-package parsingv2;
+package webcrawler.parser.fragments_old;
 import java.util.ArrayList;
 import java.util.List;
 
-import parsingv2.html.EnumHTMLElement;
-import parsingv2.html.HTMLAttribute;
+import webcrawler.parser.fragments.HTMLAttribute;
+
 
 
 

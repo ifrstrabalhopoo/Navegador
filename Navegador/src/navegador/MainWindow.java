@@ -80,6 +80,12 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        campoURL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoURLActionPerformed(evt);
+            }
+        });
+
         btnAvancar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         btnAvancar.setText("Nex");
         btnAvancar.setContentAreaFilled(false);
@@ -135,7 +141,6 @@ public class MainWindow extends javax.swing.JFrame {
                 btnHistoricoMouseClicked(evt);
             }
         });
-
         btnLogin.setText("Log");
         btnLogin.setContentAreaFilled(false);
         btnLogin.setMargin(new java.awt.Insets(2, 2, 2, 2));
@@ -244,6 +249,15 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         JanelaLogin.setVisible(true);
     }//GEN-LAST:event_btnLoginMouseClicked
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
+        System.out.println("Adiciona o endereço que está no campo URL aos favoritos");
+        banco.addFavorito(campoURL.getText());
+    }//GEN-LAST:event_btnFavoritosActionPerformed
 
     /**
      * @param args the command line arguments

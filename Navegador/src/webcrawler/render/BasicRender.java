@@ -66,8 +66,8 @@ public class BasicRender {
 					text = "\t -> " + text;
 				try {
 					doc.insertString(doc.getLength(), text, style);
-				} catch (BadLocationException e) {
-					System.err.println("Não foi possível renderizar o texto: " + text);
+				} catch (BadLocationException | ArrayIndexOutOfBoundsException e) {
+					System.err.println("Não foi possível renderizar o texto: " + text + "\n" + e.getMessage());
 				}
 			}
 			else if (node instanceof ImageNode) //render imagem
@@ -87,8 +87,8 @@ public class BasicRender {
 					try {
 						doc.insertString(doc.getLength(), "\n", defaultStyle);
 						doc.insertString(doc.getLength(), "\n", s);
-					} catch (BadLocationException e) {
-						e.printStackTrace();
+					} catch (BadLocationException | ArrayIndexOutOfBoundsException e) {
+						System.err.println("Erro ao inserir elemento no texto\n"+e.getMessage());
 					}
 				}
 			}

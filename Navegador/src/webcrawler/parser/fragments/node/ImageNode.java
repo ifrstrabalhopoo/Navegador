@@ -21,7 +21,6 @@ public class ImageNode extends Node {
 				.filter(attr -> "src".equals(attr.getName().toLowerCase()))
 				.findFirst()
 				.orElse(null);
-		System.out.println("att");
 		return source;
 	}
 	

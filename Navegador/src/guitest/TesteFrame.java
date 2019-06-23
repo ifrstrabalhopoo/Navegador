@@ -53,7 +53,7 @@ public class TesteFrame extends JFrame {
 	
 	private void init() {
 		try {
-			BasicRender render  = new BasicRender("http://www.java2s.com/Questions_And_Answers/Swing/JTextPane/HyperLink.htm");
+			BasicRender render  = new BasicRender("https://9gag.com/");
 			pane = render.getPane();
 			scrollPane = new JScrollPane(pane);
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

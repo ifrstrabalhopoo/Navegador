@@ -15,7 +15,10 @@ public class Historico {
 	public String 	urlsite = null;
 	public Data 	data_adicionado = null;
 	
-	
+	protected Historico()
+	{
+		
+	}
 	public Historico(int id, int id_usuario, String urlsite, String date) 
 	{
 		this.id = id;
@@ -34,5 +37,11 @@ public class Historico {
 	{
 		this.urlsite = urlsite;
 		this.data_adicionado = new Data();
+	}
+	
+	public Favorito convertToFavorito(int userId)
+	{
+		this.id_usuario = userId;
+		return new Favorito(this);
 	}
 }

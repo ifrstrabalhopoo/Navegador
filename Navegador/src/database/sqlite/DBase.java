@@ -2,17 +2,18 @@ package database.sqlite;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import database.models.Favorito;
 import database.models.Historico;
+import database.models.Usuario;
 import database.util.DBaseUtils;
 
 public class DBase {
 	private Connection conn = null;
-
+	Statement st = null;
 	
 	public DBase(String dbFileName) {
 		conn = createDatabase(dbFileName);
@@ -25,6 +26,7 @@ public class DBase {
 		try {
 			String dbUrl = "jdbc:sqlite:" + dbname;
 			conn = DriverManager.getConnection(dbUrl);
+			st = conn.createStatement();
 			System.out.println(DBaseUtils.nowString() + " DB[SQLITE]: Conexão com banco efetuada com sucesso!");
 		} catch (Exception e) {
 			System.err.println(DBaseUtils.nowString() + " DB[SQLITE]: Erro ao conectar com o banco de dados!");
@@ -33,11 +35,12 @@ public class DBase {
 		return conn;
 	}
 	private void createNewTables(Connection conn) {
+	
         
         // SQL statement for creating a new table
         String sql_usuario = 	"CREATE TABLE IF NOT EXISTS `usuario` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `login` TEXT NOT NULL, `senha` TEXT NOT NULL )";
         
-        String sql_favoritos = 	"CREATE TABLE IF NOT EXISTS `favoritos` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER NOT NULL,`urlsite` TEXT NOT NULL, `data_adicionado` TEXT NOT NULL);";
+        String sql_favoritos = 	"CREATE TABLE IF NOT EXISTS `favorito` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER NOT NULL,`urlsite` TEXT NOT NULL, `data_adicionado` TEXT NOT NULL);";
         String sql_historico = 	"CREATE TABLE IF NOT EXISTS `historico` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `id_usuario`	INTEGER, `urlsite`	TEXT NOT NULL, `data_adicionado` TEXT NOT NULL);";
         Statement stmt;
 		try {
@@ -51,7 +54,6 @@ public class DBase {
 		}
         
     }
-	
 	private String logPrefix() {
 		return DBaseUtils.nowString() + " DB[SQLITE]: ";
 	}
@@ -112,5 +114,61 @@ public class DBase {
 			} catch (SQLException e1) {
 				System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
 			}
+	}
+	public void addUsuario(Usuario usr) {
+		String login = usr.login;
+		String senha = usr.senha;
+		
+		String  sql = "INSERT INTO `usuario` (`login`,`senha`) VALUES ('"+login+"', '"+senha+"')";
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute(sql);
+			System.out.println(logPrefix() + "Salvo histórico");
+		} catch (SQLException e1) {
+			System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
+		}
+	}
+	public void addFavorito(Favorito fav) {
+			
+			String date 	= fav.data_adicionado == null ? DBaseUtils.nowString() : fav.data_adicionado.toString();
+			Integer userId 	= fav.id_usuario;
+			String urlSite 	= fav.urlsite;
+			
+			String sql 		= 	"INSERT INTO `favorito` (`urlsite`, `id_usuario`  ,`data_adicionado`)"+
+								" VALUES ('"+ urlSite +"', "+userId+" , '"+date+"')";
+						
+			 
+			Statement stmt;
+				try {
+					stmt = conn.createStatement();
+					stmt.execute(sql);
+					System.out.println(logPrefix() + "Salvo histórico");
+				} catch (SQLException e1) {
+					System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
+				}
+		}
+	public Usuario getUsuario(int id) {
+		String sql = "SELECT * FROM `usuario` WHERE `id` = "+id+";";
+		Usuario usr = null;
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int userid = rs.getInt("id");
+				String userlogin = rs.getString("login");
+				String userpass  = rs.getString("senha");
+				usr =  new Usuario(userlogin, userpass, userid);
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
+		}
+		
+		return usr;
+	}
+	
+	private void err(String msg)
+	{
+		System.out.println(logPrefix() + msg);
 	}
 }

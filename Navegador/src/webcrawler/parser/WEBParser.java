@@ -128,7 +128,12 @@ public class WEBParser {
 		{
 			if(token.isScript())
 			{
-				tokenizeScript(token);
+				processScript(token);
+				return;
+			}
+			if(token.isStyle())
+			{
+				processStyle(token);
 				return;
 			}
 			
@@ -148,7 +153,21 @@ public class WEBParser {
 		}
 		
 	}
-	private void tokenizeScript(TagToken token) 
+	private void processScript(TagToken token) 
+	{
+		token.consume(chars.current());
+		
+		while(chars.hasNext())
+		{
+			if(token.isClosedScript()) {
+				state = State.DATA;
+				tokenizeData();
+				return;
+			}
+			token.consume(chars.next());
+		}
+	}
+	private void processStyle(TagToken token) 
 	{
 		token.consume(chars.current());
 		
@@ -194,7 +213,7 @@ public class WEBParser {
 		});
 	}
 	private Node parseTree() throws InvalidCloseHTMLTagException, InvalidHTMLTagException {
-		Stack<OpenTagNode> lastParent = new Stack<>();
+		ArrayList<OpenTagNode> lastParent = new ArrayList<>();
 		Node rootNode = null;
 		
 		for(Token tk: tokens) 
@@ -203,7 +222,7 @@ public class WEBParser {
 			{
 				Node node = tk.toNode();
 				node.setSourceURL(webpageSourceURL);
-				OpenTagNode parent = (!lastParent.isEmpty()) ? lastParent.peek() : null;
+				OpenTagNode parent = (!lastParent.isEmpty()) ? lastParent.get(lastParent.size() -1) : null;
 				
 				if(node instanceof OpenTagNode)
 				{
@@ -219,7 +238,7 @@ public class WEBParser {
 					}
 					else 
 					{
-						node.setParent(lastParent.peek());
+						node.setParent(lastParent.get(lastParent.size() -1));
 						parent.children.add(node);
 						nodes.add(node);
 						lastParent.add((OpenTagNode) node);
@@ -243,24 +262,24 @@ public class WEBParser {
 				{
 					if (parent == null) throw new InvalidCloseHTMLTagException("Tag fechando pai inexistente");
 					
-					if(parent.getName().equals(node.getName()))
+					if(matchLastOpenParent(lastParent, (CloseTagNode) node) != null)
 					{
-						parent.setClosedBy((CloseTagNode) node);
-						node.setParent(parent);
-						lastParent.pop();
-					}
-					else
-					{
-						System.err.println("Problema de fechamento de tag detectado");
-						//throw new InvalidCloseHTMLTagException("Fechamento de tag não bate");
+						OpenTagNode pai = matchLastOpenParent(lastParent, (CloseTagNode) node);
+						pai.setClosedBy((CloseTagNode) node);
+						node.setParent(pai);
+						int parentIndexInArray = lastParent.indexOf(pai);
+						lastParent.remove(parentIndexInArray);
 					}
 				}
 			}
 			else
 			{
+				
 				Node n = tk.toNode();
 				nodes.add(n);
-				n.setParent(lastParent.peek());
+				n.setParent(lastParent.get(lastParent.size() -1));
+				boolean c = tk.toString().contains("stack");
+				
 			}
 		}
 		this.rootNode = rootNode;
@@ -271,5 +290,18 @@ public class WEBParser {
 	}
 	public Node getRootNode() {
 		return rootNode;
+	}
+	
+	private OpenTagNode matchLastOpenParent(ArrayList<OpenTagNode> arr, CloseTagNode cNode) {
+		OpenTagNode openNode = null;
+		String closerTag = cNode.getName();
+		for (int i = arr.size() -1; i > 0; i--) 
+		{
+			if(arr.get(i).getName().equals(closerTag))
+				return arr.get(i);
+		}
+
+		
+		return openNode;
 	}
 }

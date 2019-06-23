@@ -152,4 +152,21 @@ public class TagToken extends Token {
 		if(m.find()) return true;
 		else return false;
 	}
+	public boolean isStyle() {
+		String closeRegex = "^<style";
+		Pattern pa = Pattern.compile(closeRegex, rgxFlags);
+		Matcher m = pa.matcher(value);
+		
+		if(m.find()) return true;
+		else return false;
+	}
+	public boolean isClosedStyle() {
+		String closeRegex = "<\\/style>$";
+		Pattern pa = Pattern.compile(closeRegex, rgxFlags);
+		Matcher m = pa.matcher(value);
+		
+		if(m.find()) return true;
+		else return false;
+	}
+	
 }

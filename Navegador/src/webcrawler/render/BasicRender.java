@@ -2,12 +2,9 @@ package webcrawler.render;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
@@ -63,6 +60,10 @@ public class BasicRender {
 				TextNode tn = (TextNode) node;
 				Style style = tn.getStyle(this.defaultStyle);
 				String text = tn.getText();
+				if(tn.isChildOf("ul"))
+					text += "\n";
+				if(tn.isChildOf("li"))
+					text = "\t -> " + text;
 				try {
 					doc.insertString(doc.getLength(), text, style);
 				} catch (BadLocationException e) {
@@ -93,4 +94,5 @@ public class BasicRender {
 			}
 		}
 	}
+	
 }

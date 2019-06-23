@@ -9,7 +9,7 @@ public class TextNode extends Node {
 	protected String textValue;
 	
 	public TextNode(String text) {
-		this.textValue = text;
+		convertHTMLEscapeStrings(text);
 	}
 	
 	public String getText() 
@@ -47,5 +47,27 @@ public class TextNode extends Node {
 		if(this.isChildOf("center"))
 			StyleConstants.setAlignment(s, StyleConstants.ALIGN_CENTER);
 		return s;
+	}
+	
+	private void convertHTMLEscapeStrings(String text) {
+		String convertedText = text;
+		convertedText = convertedText.replaceAll("&nbsp;", " ");
+		convertedText = convertedText.replaceAll("&laquo;", "«");
+		convertedText = convertedText.replaceAll("&quot;", "\"");
+		convertedText = convertedText.replaceAll("&amp;", "&");
+		convertedText = convertedText.replaceAll("&apos;", "'");
+		convertedText = convertedText.replaceAll("&lt;", "<");
+		convertedText = convertedText.replaceAll("gt;", ">");
+		convertedText = convertedText.replaceAll("&excl;", "!");
+		convertedText = convertedText.replaceAll("&QUOT;", "\"");
+		convertedText = convertedText.replaceAll("&num;", "#");
+		convertedText = convertedText.replaceAll("&dollar;", "$");
+		convertedText = convertedText.replaceAll("&percnt;", "%");
+		convertedText = convertedText.replaceAll("&lpar;", "(");
+		convertedText = convertedText.replaceAll("&rpar;", ")");
+		convertedText = convertedText.replaceAll("&copy;", "©");
+		convertedText = convertedText.replaceAll("&COPY;", "©");
+		
+		this.textValue = convertedText;
 	}
 }

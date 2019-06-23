@@ -1,17 +1,16 @@
 package webcrawler.parser;
 
-import webcrawler.parser.fragments.TagToken;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+
+import webcrawler.parser.fragments.node.Node;
+import webcrawler.parser.fragments.token.TagToken;
+import webcrawler.render.BasicRender;
 
 public class Teste {
 	
 	public static void main(String[] args) {
-		
-		WEBParser parser = new WEBParser(html);
-		parser.tokenize();
-		parser.makeTokenTree();
-		System.out.println("teste fim");
-		TagToken tkteste = new TagToken("<html xmlns=\\\"http://www.w3.org/1999/xhtml\\\">");
-		System.out.println("x");
 	}
 	
 	public static String html = "<html>\n" + 
@@ -19,6 +18,7 @@ public class Teste {
 			"<head>\n" + 
 			"    <title>Pudim</title>\n" + 
 			"    <link rel=\"stylesheet\" href=\"estilo.css\">\n" + 
+			"<!-- this is a comment -->"+
 			"</head>\n" + 
 			"<body>\n" + 
 			"<div>\n" + 

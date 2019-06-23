@@ -10,14 +10,14 @@ import java.util.regex.Pattern;
  */
 public class StrIterator {
 	
-	private final String startString;
+	private final String fullContent;
 	private final char[] chars;
 	private int pointer = 0;
 	private int startIndex = 0;
 	private int endIndex;
 	
 	public StrIterator(String string) {
-		this.startString = string;
+		this.fullContent = string;
 		this.chars = string.toCharArray();
 		this.endIndex = chars.length -1;
 	}
@@ -76,5 +76,8 @@ public class StrIterator {
 		
 		if(m.matches()) return true;
 		else return false;
+	}
+	public String getFullContent() {
+		return fullContent;
 	}
 }

@@ -92,6 +92,7 @@ public class Document {
 	 * @param htmlInput
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private static Document parseHTML(Document doc, Node parent, String htmlInput) {
 		
 		Matcher m = PATTERN_CLOSED_TAG.matcher(htmlInput);
@@ -120,7 +121,6 @@ public class Document {
 				String tag = m.group(2);
 				String nodeData = m.group(3);
 				String nextHtml = m.group(5);
-				String next2 = m.group(5);
 				
 				if(!Document.isTagEnabled(tag)) 			// se a tag não for permitida filtra e remove
 				{ 
@@ -187,6 +187,7 @@ public class Document {
 	
 	
 	
+	@SuppressWarnings("unused")
 	private static String removeGroup(String input, String remove) {
 		String output = input;
 		output.replace(remove,"");

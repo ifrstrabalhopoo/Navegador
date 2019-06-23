@@ -7,8 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Classe criada apenas para métodos de busca de html via URL
@@ -36,11 +34,37 @@ public class HTMLFetcher {
             http_conn.setReadTimeout(100000);
             http_conn.setInstanceFollowRedirects(true);
             InputStream inStream = http_conn.getInputStream();
-            Scanner connScanner = new Scanner(inStream).useDelimiter("\\A");
+            
+            @SuppressWarnings("resource")
+			Scanner connScanner = new Scanner(inStream).useDelimiter("\\A");
             result = connScanner.hasNext() ? connScanner.next() : "";
+            
             connScanner.close();
         
         return result;
+    }
+    
+    public static String fetchHTMLAsString(URL url) 
+    {
+    	String html = "";
+    	HttpURLConnection http_conn;
+		try {
+			http_conn = (HttpURLConnection)url.openConnection();
+			http_conn.setConnectTimeout(100000);
+	        http_conn.setReadTimeout(100000);
+	        http_conn.setInstanceFollowRedirects(true);
+	        InputStream inStream = http_conn.getInputStream();
+	        
+	        @SuppressWarnings("resource")
+			Scanner connScanner = new Scanner(inStream).useDelimiter("\\A");
+	        html = connScanner.hasNext() ? connScanner.next() : "";
+	        
+	        connScanner.close();
+		} catch (IOException e) {
+			System.err.println("Não foi possível abrir a URL especificada!");
+		}
+		
+        return html;
     }
     
     /**
@@ -51,7 +75,8 @@ public class HTMLFetcher {
     public static boolean validaURL(String url)
     {
         try {
-            URL validated = new URL(url);
+            @SuppressWarnings("unused")
+			URL validated = new URL(url);
         } catch (MalformedURLException ex) {
             return false;
         }

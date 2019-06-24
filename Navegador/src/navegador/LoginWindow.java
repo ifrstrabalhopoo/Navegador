@@ -11,6 +11,9 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+        MainWindow main = new MainWindow();
+        this.getContentPane().add(main);
+        main.setVisible(true);
     }
 
     Banco banco = new Banco();

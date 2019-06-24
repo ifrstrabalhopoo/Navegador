@@ -60,9 +60,15 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+<<<<<<< HEAD
         btnFavoritos.setText("Fav");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnFavoritos.setContentAreaFilled(false);
+<<<<<<< HEAD
         btnFavoritos.setMargin(new java.awt.Insets(2, 2, 2, 2));
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnFavoritos.setRequestFocusEnabled(false);
         btnFavoritos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,9 +81,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         btnHome.setText("H");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnHome.setContentAreaFilled(false);
+<<<<<<< HEAD
         btnHome.setMargin(new java.awt.Insets(2, 2, 2, 2));
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnHome.setRequestFocusEnabled(false);
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,19 +108,28 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         btnAvancar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         btnAvancar.setText("Nex");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnAvancar.setContentAreaFilled(false);
         btnAvancar.setFocusPainted(false);
+<<<<<<< HEAD
         btnAvancar.setMargin(new java.awt.Insets(2, 2, 2, 2));
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnAvancar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAvancarMouseClicked(evt);
             }
         });
 
+<<<<<<< HEAD
         btnVoltar.setBackground(new java.awt.Color(255, 102, 102));
         btnVoltar.setText("<");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnVoltar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnVoltar.setContentAreaFilled(false);
         btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -126,10 +147,16 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         btnRecarregar.setBackground(new java.awt.Color(204, 0, 102));
         btnRecarregar.setText("Re");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnRecarregar.setContentAreaFilled(false);
+<<<<<<< HEAD
         btnRecarregar.setMargin(new java.awt.Insets(2, 2, 2, 2));
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnRecarregar.setRequestFocusEnabled(false);
         btnRecarregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -137,9 +164,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         btnIr.setText("Ir");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnIr.setContentAreaFilled(false);
+<<<<<<< HEAD
         btnIr.setMargin(new java.awt.Insets(2, 2, 2, 2));
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnIr.setRequestFocusEnabled(false);
         btnIr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -152,9 +185,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         btnHistorico.setText("His");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnHistorico.setContentAreaFilled(false);
+<<<<<<< HEAD
         btnHistorico.setMargin(new java.awt.Insets(2, 2, 2, 2));
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnHistorico.setRequestFocusEnabled(false);
         btnHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -167,9 +206,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         btnLogin.setText("Log");
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnLogin.setContentAreaFilled(false);
+<<<<<<< HEAD
         btnLogin.setMargin(new java.awt.Insets(2, 2, 2, 2));
+=======
+>>>>>>> refs/remotes/origin/gustavo1
         btnLogin.setRequestFocusEnabled(false);
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -336,41 +381,7 @@ public class MainWindow extends javax.swing.JFrame {
         banco.addFavorito(campoURL.getText());
     }//GEN-LAST:event_btnFavoritosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvancar;

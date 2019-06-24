@@ -191,7 +191,7 @@ public class DBase {
 		return favs;
 	}
 	public List<Historico> getAllHistoricos() {
-		String sql = "SELECT * FROM `favorito` ; ";
+		String sql = "SELECT * FROM `historico` ; ";
 		List<Historico> hist = new ArrayList<>();
 		try {
 			ResultSet rs = st.executeQuery(sql);

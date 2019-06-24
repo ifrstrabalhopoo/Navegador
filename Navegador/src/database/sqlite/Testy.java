@@ -1,6 +1,5 @@
 package database.sqlite;
 
-import java.sql.Connection;
 import java.util.List;
 
 import database.models.Favorito;
@@ -20,6 +19,7 @@ public class Testy {
 		Favorito fv = hist2.convertToFavorito(2);
 		db.addFavorito(fv);
 		Usuario usr = db.getUsuario(1);
+		
 		System.out.println("Localizado usuário ID:"+usr.id+" LOGIN:"+usr.login+" SENHA:"+usr.senha);
 		
 		List<Favorito> favs = db.getAllFavoritos();

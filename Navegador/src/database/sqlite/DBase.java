@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import database.models.Favorito;
 import database.models.Historico;
@@ -56,6 +58,10 @@ public class DBase {
     }
 	private String logPrefix() {
 		return DBaseUtils.nowString() + " DB[SQLITE]: ";
+	}
+	private void err(String msg)
+	{
+		System.out.println(logPrefix() + msg);
 	}
 	/**
 	 * Adiciona url ao historico grava a data automaticamente, não vincula a usuário
@@ -166,9 +172,42 @@ public class DBase {
 		
 		return usr;
 	}
-	
-	private void err(String msg)
-	{
-		System.out.println(logPrefix() + msg);
+	public List<Favorito> getAllFavoritos() {
+		String sql = "SELECT * FROM `favorito` ; ";
+		List<Favorito> favs = new ArrayList<>();
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int favid = rs.getInt("id");
+				int usrid = rs.getInt("id_usuario");
+				String urlsite	 = rs.getString("urlsite");
+				String dataadd 	 = rs.getString("data_adicionado");
+				favs.add(new Favorito(favid,usrid,urlsite,dataadd));
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
+		}
+		
+		return favs;
 	}
+	public List<Historico> getAllHistoricos() {
+		String sql = "SELECT * FROM `favorito` ; ";
+		List<Historico> hist = new ArrayList<>();
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int favid = rs.getInt("id");
+				int usrid = rs.getInt("id_usuario");
+				String urlsite	 = rs.getString("urlsite");
+				String dataadd 	 = rs.getString("data_adicionado");
+				hist.add(new Historico(favid,usrid,urlsite,dataadd));
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
+		}
+		
+		return hist;
+	}
+	
+	
 }

@@ -1,6 +1,7 @@
 package database.sqlite;
 
 import java.sql.Connection;
+import java.util.List;
 
 import database.models.Favorito;
 import database.models.Historico;
@@ -20,5 +21,17 @@ public class Testy {
 		db.addFavorito(fv);
 		Usuario usr = db.getUsuario(1);
 		System.out.println("Localizado usuário ID:"+usr.id+" LOGIN:"+usr.login+" SENHA:"+usr.senha);
+		
+		List<Favorito> favs = db.getAllFavoritos();
+		
+		favs.forEach(fav -> {
+			System.out.println("Favorito: id: "+fav.id+" usuario: "+fav.id_usuario+" Data: " +fav.data_adicionado.toString()+"\n ---> URL: ["+fav.urlsite+"]");
+		});
+		
+		List<Historico> histo = db.getAllHistoricos();
+				
+				histo.forEach(fav -> {
+					System.out.println("Historico: id: "+fav.id+" usuario: "+fav.id_usuario+" Data: " +fav.data_adicionado.toString()+"\n ---> URL: ["+fav.urlsite+"]");
+		});
 	}
 }

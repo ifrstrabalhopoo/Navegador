@@ -1,22 +1,42 @@
-
+/*
+ * Copyright (C) 2019 bonat
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 package navegador;
 
+/**
+ *
+ * @author bonat
+ */
+public class ConteudoAba extends javax.swing.JPanel {
 
-import javax.swing.JFrame;
-import database.Banco;
-import javax.swing.JTabbedPane;
-
-public class MainWindow extends javax.swing.JFrame {
-    
-    JFrame JanelaLogin = new LoginWindow();
-    Banco banco = new Banco();
+    LoginWindow janelaLogin;
     
     /**
-     * Creates new form Window
+     * Creates new form ConteudoAba
      */
-    public MainWindow() {
+    public ConteudoAba() {
+        this.janelaLogin = new LoginWindow();
         initComponents();
-        inicializaAbas();
+    }
+    
+    
+    private void inicializa()
+    {
+        
     }
 
     /**
@@ -28,8 +48,6 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        jMenu2 = new javax.swing.JMenu();
         panel_Container = new javax.swing.JPanel();
         panel_Menu = new javax.swing.JPanel();
         btnFavoritos = new javax.swing.JButton();
@@ -43,16 +61,6 @@ public class MainWindow extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         panel_Conteudo = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        jButton2 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton3 = new javax.swing.JButton();
-        panel_Abas = new javax.swing.JTabbedPane();
-        jButton4 = new javax.swing.JButton();
-
-        jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
-
-        jMenu2.setText("jMenu2");
 
         panel_Menu.setBackground(new java.awt.Color(255, 255, 255));
         panel_Menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -148,6 +156,11 @@ public class MainWindow extends javax.swing.JFrame {
                 btnLoginMouseClicked(evt);
             }
         });
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_MenuLayout = new javax.swing.GroupLayout(panel_Menu);
         panel_Menu.setLayout(panel_MenuLayout);
@@ -172,7 +185,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(btnHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         panel_MenuLayout.setVerticalGroup(
             panel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,68 +215,55 @@ public class MainWindow extends javax.swing.JFrame {
         panel_Container.setLayout(panel_ContainerLayout);
         panel_ContainerLayout.setHorizontalGroup(
             panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 819, Short.MAX_VALUE)
-            .addGroup(panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panel_ContainerLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(panel_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panel_ContainerLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panel_Conteudo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(panel_ContainerLayout.createSequentialGroup()
+                .addGroup(panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panel_Conteudo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(panel_Menu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         panel_ContainerLayout.setVerticalGroup(
             panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panel_ContainerLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panel_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panel_ContainerLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panel_Conteudo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ContainerLayout.createSequentialGroup()
+                .addComponent(panel_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel_Conteudo, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
         );
 
-        jButton2.setText("jButton2");
-
-        jButton3.setText("jButton3");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Master Browser");
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        getContentPane().add(panel_Abas, java.awt.BorderLayout.LINE_END);
-
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, java.awt.BorderLayout.PAGE_START);
-
-        pack();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritosMouseClicked
-        banco.addFavorito(campoURL.getText());
+       
     }//GEN-LAST:event_btnFavoritosMouseClicked
 
-    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
-        System.out.println("Voltar página");
-    }//GEN-LAST:event_btnVoltarMouseClicked
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        System.out.println("Página padrão (Adicionar um HTML padrão do navegador e retornar para o mesmo)");
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void campoURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoURLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoURLActionPerformed
 
     private void btnAvancarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAvancarMouseClicked
         System.out.println("Avançar página");
     }//GEN-LAST:event_btnAvancarMouseClicked
 
-    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-        System.out.println("Página padrão (Adicionar um HTML padrão do navegador e retornar para o mesmo)");
-    }//GEN-LAST:event_btnHomeMouseClicked
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        System.out.println("Voltar página");
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btnRecarregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecarregarMouseClicked
         System.out.println("Chama os métodos parse e render novamente, do HTML presente no campo de link");
@@ -271,6 +271,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnIrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIrMouseClicked
         System.out.println("Chamar parse e render para carregar a página HTML inserida");
+
     }//GEN-LAST:event_btnIrMouseClicked
 
     private void btnHistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoricoMouseClicked
@@ -278,49 +279,13 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistoricoMouseClicked
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        JanelaLogin.setVisible(true);
+        janelaLogin.setVisible(true);
     }//GEN-LAST:event_btnLoginMouseClicked
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        janelaLogin.setVisible(true);
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
-        System.out.println("Adiciona o endereço que está no campo URL aos favoritos");
-        banco.addFavorito(campoURL.getText());
-    }//GEN-LAST:event_btnFavoritosActionPerformed
-
-    private void campoURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoURLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoURLActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        inicializaAbas();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        
-        //MainWindow
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
-        
-        
-    }
-    
-    private void inicializaAbas() 
-    {
-        ConteudoAba aba = new ConteudoAba();
-        panel_Abas.addTab("Home", aba);
-    }
-            
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvancar;
@@ -332,14 +297,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnRecarregar;
     private javax.swing.JButton btnVoltar;
     private java.awt.TextField campoURL;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane panel_Abas;
     private javax.swing.JPanel panel_Container;
     private javax.swing.JScrollPane panel_Conteudo;
     private javax.swing.JPanel panel_Menu;

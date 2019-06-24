@@ -6,9 +6,7 @@ public class LoginWindow extends javax.swing.JFrame {
     
     public LoginWindow() {
         initComponents();
-        MainWindow main = new MainWindow();
-        this.getContentPane().add(main);
-        main.setVisible(true);
+        
     }
 
     Banco banco = new Banco();
@@ -146,10 +144,8 @@ public class LoginWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginWindow().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginWindow().setVisible(true);
         });
     }
 

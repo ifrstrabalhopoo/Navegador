@@ -35,7 +35,7 @@ public abstract class Node {
 		return parent;
 	}
 	public String getName() {
-		return name;
+		return name.toLowerCase();
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -82,7 +82,7 @@ public abstract class Node {
 	
 	public boolean isChildOf(String tagname)
 	{
-		Node parent = this;
+		Node parent = this.parent;
 		while(parent != null) 
 		{
 			if(parent.getName().toLowerCase().equals(tagname.toLowerCase())) return true;

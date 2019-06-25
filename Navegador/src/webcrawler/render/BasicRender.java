@@ -2,13 +2,12 @@ package webcrawler.render;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
@@ -22,19 +21,29 @@ import webcrawler.parser.fragments.node.TextNode;
 
 public class BasicRender {
 	JTextPane pane;
+	JScrollPane scrollpane;
 	StyledDocument doc;
 	List<Node> nodes;
 	Style defaultStyle;
 	WEBParser parser;
-	public BasicRender(String url) throws MalformedURLException {
+	String titulo;
+	
+	public BasicRender(String url) throws MalformedURLException, BadLocationException {
 		URL path = new URL(url);
+		titulo = path.getHost();
 		parser = WEBParser.parse(path);
 		nodes = parser.getNodes();
-		List<Node> no1 = parser.getNodes();
-		System.out.println("testre");
 		initPane();
 	}
-	private void initPane() {
+	
+	public BasicRender(URL url) throws MalformedURLException, BadLocationException {
+		URL path = url;
+		parser = WEBParser.parse(path);
+		nodes = parser.getNodes();
+		initPane();
+	}
+	
+	private void initPane() throws BadLocationException {
 		pane = new JTextPane();
 		pane.setEditable(false);
 		doc = pane.getStyledDocument();
@@ -50,10 +59,17 @@ public class BasicRender {
 	}
 	
 	public JTextPane getPane() {
+		scrollpane = new JScrollPane();
+		scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollpane.add(pane);
 		return pane;
 	}
+	public String getTitulo()
+	{
+		return titulo;
+	}
 	
-	private void renderNodes() 
+	private void renderNodes() throws BadLocationException 
 	{
 		for (Node node : nodes) { 
 			if(!node.isRenderAble()) continue;
@@ -61,13 +77,18 @@ public class BasicRender {
 			if (node instanceof TextNode) //render texto
 			{
 				TextNode tn = (TextNode) node;
-				Style style = tn.getStyle(this.defaultStyle);
+				Style style = tn.getStyle();
 				String text = tn.getText();
-				try {
+				if(tn.isChildOf("ul"))
+					text += " ";
+				if(tn.isChildOf("li"))
+					text = "\t [" + text +"]";
+				if(tn.isChildOf("title"))
+					titulo = tn.getText();
+				if(tn.isChildOf("a"))
+					text += " ";
 					doc.insertString(doc.getLength(), text, style);
-				} catch (BadLocationException e) {
-					System.err.println("Não foi possível renderizar o texto: " + text);
-				}
+				
 			}
 			else if (node instanceof ImageNode) //render imagem
 			{
@@ -86,11 +107,13 @@ public class BasicRender {
 					try {
 						doc.insertString(doc.getLength(), "\n", defaultStyle);
 						doc.insertString(doc.getLength(), "\n", s);
-					} catch (BadLocationException e) {
-						e.printStackTrace();
+					} catch (BadLocationException | ArrayIndexOutOfBoundsException e) {
+						System.err.println("Erro ao inserir elemento no texto\n"+e.getMessage());
 					}
 				}
+				
 			}
 		}
 	}
+	
 }

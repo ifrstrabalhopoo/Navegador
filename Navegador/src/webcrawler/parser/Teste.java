@@ -1,12 +1,5 @@
 package webcrawler.parser;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-
-import webcrawler.parser.fragments.node.Node;
-import webcrawler.parser.fragments.token.TagToken;
-import webcrawler.render.BasicRender;
 
 public class Teste {
 	

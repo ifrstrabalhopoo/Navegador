@@ -17,6 +17,7 @@ public class StrIterator {
 	private int endIndex;
 	
 	public StrIterator(String string) {
+		if(string.length() == 0) string = "<html><body><h1>Erro ao carregar página<h1><body><html>";
 		this.fullContent = string;
 		this.chars = string.toCharArray();
 		this.endIndex = chars.length -1;

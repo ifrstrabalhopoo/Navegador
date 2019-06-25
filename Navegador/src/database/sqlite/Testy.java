@@ -1,6 +1,5 @@
 package database.sqlite;
 
-import java.sql.Connection;
 import java.util.List;
 
 import database.models.Favorito;

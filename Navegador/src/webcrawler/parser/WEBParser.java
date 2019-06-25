@@ -278,7 +278,6 @@ public class WEBParser {
 				Node n = tk.toNode();
 				nodes.add(n);
 				n.setParent(lastParent.get(lastParent.size() -1));
-				boolean c = tk.toString().contains("stack");
 				
 			}
 		}

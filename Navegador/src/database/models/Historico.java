@@ -1,9 +1,5 @@
 package database.models;
 
-import java.util.Date;
-
-import database.util.DBaseUtils;
-
 /**
  * Modelo de dados do histórico
  * @author Everton Crespin da Silva

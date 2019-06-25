@@ -3,6 +3,7 @@ package webcrawler.parser.fragments.node;
 import java.awt.Color;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 
 
 public class TextNode extends Node {
@@ -25,7 +26,9 @@ public class TextNode extends Node {
 		if(this.isChildOf("body") && !this.isChildOf("script")) return true;
 		else return false;
 	}
-	public Style getStyle(Style s) {
+
+	public Style getStyle() {
+		Style s = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
 		if(this.isChildOf("b"))
 			StyleConstants.setBold(s, true);
 		if(this.isChildOf("i"))

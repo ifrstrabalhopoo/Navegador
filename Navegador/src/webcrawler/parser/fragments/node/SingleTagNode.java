@@ -8,6 +8,8 @@ public class SingleTagNode extends Node {
 	
 	@Override
 	public boolean isRenderAble() {
+		if(this.name.toLowerCase() == "br" || this.name.toLowerCase() == "hr")
+			return true;
 		return false;
 	}
 

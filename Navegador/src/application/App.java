@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import com.alee.laf.WebLookAndFeel;
 
 import application.components.AbaContainer;
+import application.components.LoginDialog;
+
 import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
 
@@ -15,7 +17,9 @@ public class App {
 
 	private JFrame frmNavV;
 	private AbaContainer aba;
-	JTabbedPane tabs;
+	public JTabbedPane tabs;
+	public LoginDialog loginDialog;
+	
 
 	/**
 	 * Launch the application.
@@ -67,6 +71,7 @@ public class App {
 	{
 		tabs = new JTabbedPane(JTabbedPane.TOP);
 		aba = new AbaContainer(this);
+		loginDialog = new LoginDialog();
 	}
 	public void setTabTitle(int index, String title)
 	{
@@ -78,5 +83,10 @@ public class App {
 		tabs.add("Nova aba", abaz);
 		abaz.setIndex(tabs.getSelectedIndex());
 		tabs.setSelectedComponent(abaz);
+	}
+	public void showLoginDialog()
+	{
+		loginDialog.setLocationRelativeTo(null);
+		loginDialog.setVisible(true);
 	}
 }

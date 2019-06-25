@@ -208,6 +208,58 @@ public class DBase {
 		
 		return hist;
 	}
-	
-	
+	/**
+	 * Retorna um objeto usuário caso exista um com o usuário e senha solicitados
+	 * @param log Login
+	 * @param pw Senha
+	 * @return Usuário ou null se não houver
+	 */
+	public Usuario usrLogin(String log, String pw)
+	{
+		Usuario usr = null;
+		
+		String sql = "SELECT * FROM usuario WHERE login = '"+log+"' AND senha = '"+pw+"'";
+		
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next())
+			{
+				int usrID = rs.getInt("id");
+				String login = rs.getString("login");
+				String senha = rs.getString("senha");
+				usr = new Usuario(login,senha,usrID);
+			}
+		} catch (Exception e) {
+			System.err.println("Erro de login");
+		}
+		
+		
+		return usr;
+	}
+	/**
+	 * Verifica se o nome de usuário já existe
+	 * @param usrName
+	 * @return
+	 */
+	public boolean usrNameExists(String usrName) {
+		
+		String sql = "SELECT * FROM usuario WHERE login = '"+usrName+"';";
+		
+				try {
+					ResultSet rs = st.executeQuery(sql);
+					while(rs.next())
+					{
+						int usrID = rs.getInt("id");
+						String login = rs.getString("login");
+						String senha = rs.getString("senha");
+						Usuario usr = new Usuario(login,senha,usrID);
+						return true;
+					}
+				} catch (Exception e) {
+					System.err.println("Erro de login");
+				}
+		
+		
+		return false;
+	}
 }

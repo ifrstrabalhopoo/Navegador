@@ -96,5 +96,9 @@ public class AbaContainer extends JPanel {
 	{
 		app.newTab();
 	}
+	public application.App getApp()
+	{
+		return app;
+	}
 	
 }

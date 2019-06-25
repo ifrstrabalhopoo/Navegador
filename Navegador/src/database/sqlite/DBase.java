@@ -38,7 +38,6 @@ public class DBase {
 	}
 	private void createNewTables(Connection conn) {
 	
-        
         // SQL statement for creating a new table
         String sql_usuario = 	"CREATE TABLE IF NOT EXISTS `usuario` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `login` TEXT NOT NULL, `senha` TEXT NOT NULL )";
         
@@ -110,8 +109,7 @@ public class DBase {
 		String urlSite = obj.urlsite;
 		String sql = 	"INSERT INTO `historico` (`urlsite`, `id_usuario`  ,`data_adicionado`)"+
 						" VALUES ('"+ urlSite +"', "+userId+" , '"+date+"')";
-					
-		 
+				
 		Statement stmt;
 			try {
 				stmt = conn.createStatement();
@@ -121,6 +119,7 @@ public class DBase {
 				System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
 			}
 	}
+	
 	public void addUsuario(Usuario usr) {
 		String login = usr.login;
 		String senha = usr.senha;
@@ -136,25 +135,26 @@ public class DBase {
 			System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
 		}
 	}
+	
 	public void addFavorito(Favorito fav) {
-			
-			String date 	= fav.data_adicionado == null ? DBaseUtils.nowString() : fav.data_adicionado.toString();
-			Integer userId 	= fav.id_usuario;
-			String urlSite 	= fav.urlsite;
-			
-			String sql 		= 	"INSERT INTO `favorito` (`urlsite`, `id_usuario`  ,`data_adicionado`)"+
-								" VALUES ('"+ urlSite +"', "+userId+" , '"+date+"')";
+		String date 	= fav.data_adicionado == null ? DBaseUtils.nowString() : fav.data_adicionado.toString();
+		Integer userId 	= fav.id_usuario;
+		String urlSite 	= fav.urlsite;
+		
+		String sql 		= 	"INSERT INTO `favorito` (`urlsite`, `id_usuario`  ,`data_adicionado`)"+
+							" VALUES ('"+ urlSite +"', "+userId+" , '"+date+"')";
 						
 			 
-			Statement stmt;
-				try {
-					stmt = conn.createStatement();
-					stmt.execute(sql);
-					System.out.println(logPrefix() + "Salvo histórico");
-				} catch (SQLException e1) {
-					System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
-				}
-		}
+		Statement stmt;
+			try {
+				stmt = conn.createStatement();
+				stmt.execute(sql);
+				System.out.println(logPrefix() + "Salvo histórico");
+			} catch (SQLException e1) {
+				System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
+			}
+	}
+	
 	public Usuario getUsuario(int id) {
 		String sql = "SELECT * FROM `usuario` WHERE `id` = "+id+";";
 		Usuario usr = null;
@@ -172,6 +172,7 @@ public class DBase {
 		
 		return usr;
 	}
+	
 	public List<Favorito> getAllFavoritos() {
 		String sql = "SELECT * FROM `favorito` ; ";
 		List<Favorito> favs = new ArrayList<>();
@@ -190,6 +191,7 @@ public class DBase {
 		
 		return favs;
 	}
+	
 	public List<Historico> getAllHistoricos() {
 		String sql = "SELECT * FROM `favorito` ; ";
 		List<Historico> hist = new ArrayList<>();
@@ -208,6 +210,7 @@ public class DBase {
 		
 		return hist;
 	}
+	
 	/**
 	 * Retorna um objeto usuário caso exista um com o usuário e senha solicitados
 	 * @param log Login

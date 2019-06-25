@@ -13,7 +13,7 @@ import javax.swing.JTabbedPane;
 
 public class App {
 
-	private JFrame frame;
+	private JFrame frmNavV;
 	private AbaContainer aba;
 	JTabbedPane tabs;
 
@@ -26,7 +26,7 @@ public class App {
 				try {
 					WebLookAndFeel.install();
 					App window = new App();
-					window.frame.setVisible(true);
+					window.frmNavV.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,12 +46,13 @@ public class App {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setExtendedState(frame.getExtendedState()|JFrame.MAXIMIZED_BOTH);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.getContentPane().add(tabs, BorderLayout.CENTER);
+		frmNavV = new JFrame();
+		frmNavV.setTitle("Nav v0.000000000001");
+		frmNavV.setBounds(100, 100, 450, 300);
+		frmNavV.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmNavV.setExtendedState(frmNavV.getExtendedState()|JFrame.MAXIMIZED_BOTH);
+		frmNavV.getContentPane().setLayout(new BorderLayout(0, 0));
+		frmNavV.getContentPane().add(tabs, BorderLayout.CENTER);
 		
 		
 		tabs.addTab(aba.getTitle(), aba);

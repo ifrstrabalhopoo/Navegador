@@ -17,6 +17,7 @@
  */
 package navegador;
 
+
 /**
  *
  * @author bonat
@@ -34,10 +35,6 @@ public class ConteudoAba extends javax.swing.JPanel {
     }
     
     
-    private void inicializa()
-    {
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +45,6 @@ public class ConteudoAba extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_Container = new javax.swing.JPanel();
         panel_Menu = new javax.swing.JPanel();
         btnFavoritos = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
@@ -59,8 +55,13 @@ public class ConteudoAba extends javax.swing.JPanel {
         btnIr = new javax.swing.JButton();
         btnHistorico = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
         panel_Conteudo = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        setName(""); // NOI18N
+        setLayout(new java.awt.BorderLayout());
 
         panel_Menu.setBackground(new java.awt.Color(255, 255, 255));
         panel_Menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -162,6 +163,13 @@ public class ConteudoAba extends javax.swing.JPanel {
             }
         });
 
+        jToggleButton1.setText("+");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_MenuLayout = new javax.swing.GroupLayout(panel_Menu);
         panel_Menu.setLayout(panel_MenuLayout);
         panel_MenuLayout.setHorizontalGroup(
@@ -185,13 +193,17 @@ public class ConteudoAba extends javax.swing.JPanel {
                 .addComponent(btnHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToggleButton1)
+                .addContainerGap(758, Short.MAX_VALUE))
         );
         panel_MenuLayout.setVerticalGroup(
             panel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_MenuLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton1))
                 .addContainerGap())
             .addGroup(panel_MenuLayout.createSequentialGroup()
                 .addContainerGap()
@@ -208,41 +220,15 @@ public class ConteudoAba extends javax.swing.JPanel {
                 .addGap(12, 12, 12))
         );
 
+        add(panel_Menu, java.awt.BorderLayout.NORTH);
+
+        panel_Conteudo.setMinimumSize(new java.awt.Dimension(400, 400));
+
         jEditorPane1.setEditable(false);
+        jEditorPane1.setMinimumSize(new java.awt.Dimension(300, 400));
         panel_Conteudo.setViewportView(jEditorPane1);
 
-        javax.swing.GroupLayout panel_ContainerLayout = new javax.swing.GroupLayout(panel_Container);
-        panel_Container.setLayout(panel_ContainerLayout);
-        panel_ContainerLayout.setHorizontalGroup(
-            panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_ContainerLayout.createSequentialGroup()
-                .addGroup(panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panel_Conteudo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(panel_Menu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 10, Short.MAX_VALUE))
-        );
-        panel_ContainerLayout.setVerticalGroup(
-            panel_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ContainerLayout.createSequentialGroup()
-                .addComponent(panel_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_Conteudo, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panel_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        add(panel_Conteudo, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritosMouseClicked
@@ -286,6 +272,10 @@ public class ConteudoAba extends javax.swing.JPanel {
         janelaLogin.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvancar;
@@ -298,7 +288,7 @@ public class ConteudoAba extends javax.swing.JPanel {
     private javax.swing.JButton btnVoltar;
     private java.awt.TextField campoURL;
     private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JPanel panel_Container;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JScrollPane panel_Conteudo;
     private javax.swing.JPanel panel_Menu;
     // End of variables declaration//GEN-END:variables

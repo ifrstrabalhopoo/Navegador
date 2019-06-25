@@ -298,6 +298,10 @@ public class MainWindow extends javax.swing.JFrame {
         inicializaAbas();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        inicializaAbas();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -315,10 +319,11 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
-    private void inicializaAbas() 
+    public void inicializaAbas() 
     {
         ConteudoAba aba = new ConteudoAba();
         panel_Abas.addTab("Home", aba);
+        getContentPane().add(panel_Abas, java.awt.BorderLayout.CENTER);
     }
             
 

@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.net.URL;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.alee.laf.WebLookAndFeel;
 
@@ -25,6 +26,7 @@ public class App {
 	JTabbedPane 	tabs;
 	private DialogLogin telalogin;
 	private DBase banco;
+	private Usuario usuario = null;
 
 	/**
 	 * Launch the application.
@@ -97,7 +99,39 @@ public class App {
 	
 	public boolean logarUsuario(String login, String senha)
 	{
-		
+		if(banco.existeUsuario(login))
+			{
+				//verificar senha ta correta
+				Usuario usr = banco.logar(login, senha);
+				if(usr != null) //senha correta
+				{
+					this.usuario = usr;
+					JOptionPane aviso = new JOptionPane();
+					aviso.showMessageDialog(null, "Usuário logado com sucesso!", "Login", JOptionPane.INFORMATION_MESSAGE);
+					return true;
+				}
+				else //senha incorreta 
+				{
+					JOptionPane aviso = new JOptionPane();
+					aviso.showMessageDialog(null, "Senha incorreta!", "Erro de login", JOptionPane.INFORMATION_MESSAGE);
+					return false;
+				}
+			}
+		else 
+			{
+				//Criar novo?
+				JOptionPane dialogConfirma = new JOptionPane();
+				int confirma = dialogConfirma.showConfirmDialog(null, "Usuário inexistente! Deseja criá-lo?", "Login", JOptionPane.YES_NO_OPTION);
+				
+				if (confirma == 0) {
+					banco.addUsuario(new Usuario(login, senha));
+					telalogin.setVisible(false);
+					return true;
+				}
+				else if (confirma == 1) {
+					telalogin.setVisible(false);
+				}
+			}
 		return false;
 		
 	}

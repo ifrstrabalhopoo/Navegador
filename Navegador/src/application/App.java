@@ -8,14 +8,23 @@ import javax.swing.JFrame;
 import com.alee.laf.WebLookAndFeel;
 
 import application.components.AbaContainer;
+import application.components.DialogLogin;
+import database.models.Usuario;
+import database.sqlite.DBase;
+
 import java.awt.BorderLayout;
+import java.awt.Dialog;
+
 import javax.swing.JTabbedPane;
 
 public class App {
 
+	private Usuario user = null;
 	private JFrame frmNavV;
 	private AbaContainer aba;
-	JTabbedPane tabs;
+	JTabbedPane 	tabs;
+	private DialogLogin telalogin;
+	private DBase banco;
 
 	/**
 	 * Launch the application.
@@ -40,6 +49,8 @@ public class App {
 	public App() {
 		initCustom();
 		initialize();
+		telalogin = new DialogLogin(this);
+		this.banco = new DBase("navegador.db");
 	}
 
 	/**
@@ -78,5 +89,16 @@ public class App {
 		tabs.add("Nova aba", abaz);
 		abaz.setIndex(tabs.getSelectedIndex());
 		tabs.setSelectedComponent(abaz);
+	}
+	
+	public void openLoginWindow() {
+		telalogin.setVisible(true);
+	}
+	
+	public boolean logarUsuario(String login, String senha)
+	{
+		
+		return false;
+		
 	}
 }

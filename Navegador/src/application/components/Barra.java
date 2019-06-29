@@ -71,6 +71,12 @@ public class Barra extends JPanel {
 		add(button_Ir, "cell 3 0");
 		
 		JButton button_Login = new JButton("");
+		button_Login.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parentContainer.app.openLoginWindow();
+			}
+		});
 		button_Login.setIcon(new ImageIcon(Barra.class.getResource("/application/icons/finger.png")));
 		add(button_Login, "cell 4 0");
 		
@@ -102,6 +108,9 @@ public class Barra extends JPanel {
 		
 		JMenuItem mntmFavoritos_1 = new JMenuItem("Favoritos");
 		popupMenu.add(mntmFavoritos_1);
+		
+		JMenuItem mntmAddFavorito_1 = new JMenuItem("Adicionar aos favoritos");
+		popupMenu.add(mntmAddFavorito_1);
 		
 		
 		mntmNovaAba.addActionListener(new ActionListener() {

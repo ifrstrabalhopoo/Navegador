@@ -44,6 +44,7 @@ public class DBase {
         
         String sql_favoritos = 	"CREATE TABLE IF NOT EXISTS `favorito` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER NOT NULL,`urlsite` TEXT NOT NULL, `data_adicionado` TEXT NOT NULL);";
         String sql_historico = 	"CREATE TABLE IF NOT EXISTS `historico` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `id_usuario`	INTEGER, `urlsite`	TEXT NOT NULL, `data_adicionado` TEXT NOT NULL);";
+        
         Statement stmt;
 		try {
 			stmt = conn.createStatement();

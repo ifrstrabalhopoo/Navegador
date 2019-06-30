@@ -14,7 +14,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import webcrawler.parser.WEBParser;
+import webcrawler.parser.Document;
 import webcrawler.parser.fragments.node.ImageNode;
 import webcrawler.parser.fragments.node.Node;
 import webcrawler.parser.fragments.node.TextNode;
@@ -25,20 +25,20 @@ public class BasicRender {
 	StyledDocument doc;
 	List<Node> nodes;
 	Style defaultStyle;
-	WEBParser parser;
+	Document parser;
 	String titulo;
 	
 	public BasicRender(String url) throws MalformedURLException, BadLocationException {
 		URL path = new URL(url);
 		titulo = path.getHost();
-		parser = WEBParser.parse(path);
+		parser = Document.parse(path);
 		nodes = parser.getNodes();
 		initPane();
 	}
 	
 	public BasicRender(URL url) throws MalformedURLException, BadLocationException {
 		URL path = url;
-		parser = WEBParser.parse(path);
+		parser = Document.parse(path);
 		nodes = parser.getNodes();
 		initPane();
 	}

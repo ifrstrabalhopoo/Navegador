@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.Proxy;
 import java.net.URL;
 import java.util.Scanner;
+import java.net.InetSocketAddress;
 
 /**
  * Classe criada apenas para métodos de busca de html via URL
@@ -27,6 +29,8 @@ public class HTMLFetcher {
         HttpURLConnection.setFollowRedirects(true); // defaults to true
         String result = null;
         URL request_url;
+        System.setProperty("http.proxyHost", "10.1.0.3");
+        System.setProperty("http.proxyPort", "3128");
         
             request_url = new URL(url);
             HttpURLConnection http_conn = (HttpURLConnection)request_url.openConnection();

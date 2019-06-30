@@ -20,7 +20,7 @@ import webcrawler.parser.fragments.token.TagToken;
 import webcrawler.parser.fragments.token.Token;
 import webcrawler.parser.util.StrIterator;
 
-public class WEBParser {
+public class Document {
 	enum State {
 		TAG,
 		DATA,
@@ -38,15 +38,16 @@ public class WEBParser {
 	private Node rootNode = null;
 	private State state = State.DATA;
 	private StrIterator chars;
+	private String buffer = "";
 	
-	private WEBParser(String html, URL url) {
+	private Document(String html, URL url) {
 		chars = new StrIterator(html);
 		webpageSourceURL = url;
 	}
 	
-	public static WEBParser parse(URL url) {
+	public static Document parse(URL url) {
 		String html = HTMLFetcher.fetchHTMLAsString(url);
-		WEBParser newParser = new WEBParser(html, url);
+		Document newParser = new Document(html, url);
 		newParser.parse();
 		return newParser;
 	}
@@ -56,7 +57,7 @@ public class WEBParser {
 		tokenize();
 		parseTree();
 	}
-	
+
 	private void tokenize()
 	{
 		if(chars.current() == '<')

@@ -79,7 +79,6 @@ public abstract class Node {
 		}
 		return count;
 	}
-	
 	public boolean isChildOf(String tagname)
 	{
 		Node parent = this.parent;
@@ -97,4 +96,5 @@ public abstract class Node {
 	public void setSourceURL(URL url) {
 		webpageSourceURL = url;
 	}
+	
 }

@@ -14,7 +14,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import webcrawler.parser.WEBParser;
+import webcrawler.parser.Document;
 import webcrawler.parser.fragments.node.ImageNode;
 import webcrawler.parser.fragments.node.Node;
 import webcrawler.parser.fragments.node.TextNode;
@@ -25,20 +25,18 @@ public class BasicRender {
 	StyledDocument doc;
 	List<Node> nodes;
 	Style defaultStyle;
-	WEBParser parser;
-	String titulo;
+	Document parser;
 	
 	public BasicRender(String url) throws MalformedURLException, BadLocationException {
 		URL path = new URL(url);
-		titulo = path.getHost();
-		parser = WEBParser.parse(path);
+		parser = Document.parse(path);
 		nodes = parser.getNodes();
 		initPane();
 	}
 	
 	public BasicRender(URL url) throws MalformedURLException, BadLocationException {
 		URL path = url;
-		parser = WEBParser.parse(path);
+		parser = Document.parse(path);
 		nodes = parser.getNodes();
 		initPane();
 	}
@@ -66,7 +64,7 @@ public class BasicRender {
 	}
 	public String getTitulo()
 	{
-		return titulo;
+		return this.parser.getTitulo();
 	}
 	
 	private void renderNodes() throws BadLocationException 
@@ -83,8 +81,6 @@ public class BasicRender {
 					text += " ";
 				if(tn.isChildOf("li"))
 					text = "\t [" + text +"]";
-				if(tn.isChildOf("title"))
-					titulo = tn.getText();
 				if(tn.isChildOf("a"))
 					text += " ";
 					doc.insertString(doc.getLength(), text, style);

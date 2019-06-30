@@ -6,9 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+@SuppressWarnings("serial")
 public class FrameFavoritos extends JFrame {
 
 	private JPanel contentPane;

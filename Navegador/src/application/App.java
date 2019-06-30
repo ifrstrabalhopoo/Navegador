@@ -1,8 +1,6 @@
 package application;
 
 import java.awt.EventQueue;
-import java.net.URL;
-
 import javax.swing.JFrame;
 
 import com.alee.laf.WebLookAndFeel;

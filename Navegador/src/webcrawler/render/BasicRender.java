@@ -26,11 +26,9 @@ public class BasicRender {
 	List<Node> nodes;
 	Style defaultStyle;
 	Document parser;
-	String titulo;
 	
 	public BasicRender(String url) throws MalformedURLException, BadLocationException {
 		URL path = new URL(url);
-		titulo = path.getHost();
 		parser = Document.parse(path);
 		nodes = parser.getNodes();
 		initPane();
@@ -66,7 +64,7 @@ public class BasicRender {
 	}
 	public String getTitulo()
 	{
-		return titulo;
+		return this.parser.getTitulo();
 	}
 	
 	private void renderNodes() throws BadLocationException 
@@ -83,8 +81,6 @@ public class BasicRender {
 					text += " ";
 				if(tn.isChildOf("li"))
 					text = "\t [" + text +"]";
-				if(tn.isChildOf("title"))
-					titulo = tn.getText();
 				if(tn.isChildOf("a"))
 					text += " ";
 					doc.insertString(doc.getLength(), text, style);

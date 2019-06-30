@@ -3,7 +3,8 @@ package webcrawler.parser;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import webcrawler.http.HTMLFetcher;
 import webcrawler.parser.exceptions.HTMLParseErrorException;
@@ -38,10 +39,11 @@ public class Document {
 	private Node rootNode = null;
 	private State state = State.DATA;
 	private StrIterator chars;
-	private String buffer = "";
+	private String originalHtml = null;
 	
 	private Document(String html, URL url) {
 		chars = new StrIterator(html);
+		this.originalHtml = html;
 		webpageSourceURL = url;
 	}
 	
@@ -183,36 +185,12 @@ public class Document {
 		}
 	}
 	
-	@SuppressWarnings("unused")
-	private void makeTokenTree() {
-		Stack<TagToken> lastParent = new Stack<>();
-		
-		tokens.forEach((token) -> {
-			if(token.isTagToken()) {
-				TagToken tk = (TagToken) token;
-				
-				if(	tk.isClosingTag()
-					&&				// Se a tag for de fechamento e o nome é igual à ultima tag aberta
-					tk.getTagName().equals(lastParent.peek().getTagName())
-					) 
-				{
-					lastParent.pop();
-				}
-				else if (!tk.isClosingTag() && !tk.isOmitiveTag()) {
-					
-					if(!lastParent.empty())
-						tk.parent = lastParent.peek();
-					
-					lastParent.push(tk);
-				}
-			}
-			else
-			{
-				if(!lastParent.empty())
-					token.parent = lastParent.peek();
-			}
-		});
-	}
+	/**
+	 * Faz a transformação dos tokens em uma árvore de Nodes
+	 * @return Node raíz
+	 * @throws InvalidCloseHTMLTagException
+	 * @throws InvalidHTMLTagException
+	 */
 	private Node parseTree() throws InvalidCloseHTMLTagException, InvalidHTMLTagException {
 		ArrayList<OpenTagNode> lastParent = new ArrayList<>();
 		Node rootNode = null;
@@ -303,5 +281,15 @@ public class Document {
 
 		
 		return openNode;
+	}
+	public String getTitulo() {
+		Pattern pat = Pattern.compile("(?<=<title>)([a-z])*(?=<\\/title>)", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+		Matcher m = pat.matcher(this.originalHtml);
+		
+		if(m.find())
+		{
+			return m.group(1);
+		}
+		else return this.webpageSourceURL.getAuthority();
 	}
 }

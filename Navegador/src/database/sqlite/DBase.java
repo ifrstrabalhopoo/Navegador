@@ -44,6 +44,7 @@ public class DBase {
         
         String sql_favoritos = 	"CREATE TABLE IF NOT EXISTS `favorito` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER NOT NULL,`urlsite` TEXT NOT NULL, `data_adicionado` TEXT NOT NULL);";
         String sql_historico = 	"CREATE TABLE IF NOT EXISTS `historico` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `id_usuario`	INTEGER, `urlsite`	TEXT NOT NULL, `data_adicionado` TEXT NOT NULL);";
+        
         Statement stmt;
 		try {
 			stmt = conn.createStatement();
@@ -131,7 +132,7 @@ public class DBase {
 		try {
 			stmt = conn.createStatement();
 			stmt.execute(sql);
-			System.out.println(logPrefix() + "Salvo histórico");
+			System.out.println(logPrefix() + "Salvo usuario");
 		} catch (SQLException e1) {
 			System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
 		}
@@ -172,6 +173,42 @@ public class DBase {
 		
 		return usr;
 	}
+	public Usuario logar(String login, String senha) {
+		
+		String sql = "SELECT * FROM `usuario` WHERE `login` = '"+login+"' AND `senha` = '"+senha+"';";
+		Usuario usr = null;
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int userid = rs.getInt("id");
+				String userlogin = rs.getString("login");
+				String userpass  = rs.getString("senha");
+				usr =  new Usuario(userlogin, userpass, userid);
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
+		}
+		
+		return usr;
+	}
+	public boolean existeUsuario(String login) {
+		String sql = "SELECT * FROM `usuario` WHERE `login` = '"+login+"';";
+		Usuario usr = null;
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int userid = rs.getInt("id");
+				String userlogin = rs.getString("login");
+				String userpass  = rs.getString("senha");
+				usr =  new Usuario(userlogin, userpass, userid);
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO!!!!!. " + e.getMessage());
+		}
+		
+		if(usr != null) return true;
+		else return false;
+	}
 	public List<Favorito> getAllFavoritos() {
 		String sql = "SELECT * FROM `favorito` ; ";
 		List<Favorito> favs = new ArrayList<>();
@@ -191,7 +228,7 @@ public class DBase {
 		return favs;
 	}
 	public List<Historico> getAllHistoricos() {
-		String sql = "SELECT * FROM `favorito` ; ";
+		String sql = "SELECT * FROM `historico` WHERE `id_usuario` is NULL ; ";
 		List<Historico> hist = new ArrayList<>();
 		try {
 			ResultSet rs = st.executeQuery(sql);
@@ -205,7 +242,23 @@ public class DBase {
 		} catch (SQLException e) {
 			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
 		}
-		
+		return hist;
+	}
+	public List<Historico> getHistoricosLogado(Usuario usr) {
+		String sql = "SELECT * FROM `historico` WHERE `id_usuario` = "+usr.id+"; ";
+		List<Historico> hist = new ArrayList<>();
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int favid = rs.getInt("id");
+				int usrid = rs.getInt("id_usuario");
+				String urlsite	 = rs.getString("urlsite");
+				String dataadd 	 = rs.getString("data_adicionado");
+				hist.add(new Historico(favid,usrid,urlsite,dataadd));
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
+		}
 		return hist;
 	}
 	

@@ -3,7 +3,8 @@ package webcrawler.parser;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import webcrawler.http.HTMLFetcher;
 import webcrawler.parser.exceptions.HTMLParseErrorException;
@@ -20,7 +21,7 @@ import webcrawler.parser.fragments.token.TagToken;
 import webcrawler.parser.fragments.token.Token;
 import webcrawler.parser.util.StrIterator;
 
-public class WEBParser {
+public class Document {
 	enum State {
 		TAG,
 		DATA,
@@ -38,15 +39,17 @@ public class WEBParser {
 	private Node rootNode = null;
 	private State state = State.DATA;
 	private StrIterator chars;
+	private String originalHtml = null;
 	
-	private WEBParser(String html, URL url) {
+	private Document(String html, URL url) {
 		chars = new StrIterator(html);
+		this.originalHtml = html;
 		webpageSourceURL = url;
 	}
 	
-	public static WEBParser parse(URL url) {
+	public static Document parse(URL url) {
 		String html = HTMLFetcher.fetchHTMLAsString(url);
-		WEBParser newParser = new WEBParser(html, url);
+		Document newParser = new Document(html, url);
 		newParser.parse();
 		return newParser;
 	}
@@ -56,7 +59,7 @@ public class WEBParser {
 		tokenize();
 		parseTree();
 	}
-	
+
 	private void tokenize()
 	{
 		if(chars.current() == '<')
@@ -182,36 +185,12 @@ public class WEBParser {
 		}
 	}
 	
-	@SuppressWarnings("unused")
-	private void makeTokenTree() {
-		Stack<TagToken> lastParent = new Stack<>();
-		
-		tokens.forEach((token) -> {
-			if(token.isTagToken()) {
-				TagToken tk = (TagToken) token;
-				
-				if(	tk.isClosingTag()
-					&&				// Se a tag for de fechamento e o nome é igual à ultima tag aberta
-					tk.getTagName().equals(lastParent.peek().getTagName())
-					) 
-				{
-					lastParent.pop();
-				}
-				else if (!tk.isClosingTag() && !tk.isOmitiveTag()) {
-					
-					if(!lastParent.empty())
-						tk.parent = lastParent.peek();
-					
-					lastParent.push(tk);
-				}
-			}
-			else
-			{
-				if(!lastParent.empty())
-					token.parent = lastParent.peek();
-			}
-		});
-	}
+	/**
+	 * Faz a transformação dos tokens em uma árvore de Nodes
+	 * @return Node raíz
+	 * @throws InvalidCloseHTMLTagException
+	 * @throws InvalidHTMLTagException
+	 */
 	private Node parseTree() throws InvalidCloseHTMLTagException, InvalidHTMLTagException {
 		ArrayList<OpenTagNode> lastParent = new ArrayList<>();
 		Node rootNode = null;
@@ -302,5 +281,15 @@ public class WEBParser {
 
 		
 		return openNode;
+	}
+	public String getTitulo() {
+		Pattern pat = Pattern.compile("(?<=<title>)([a-z])*(?=<\\/title>)", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+		Matcher m = pat.matcher(this.originalHtml);
+		
+		if(m.find())
+		{
+			return m.group(1);
+		}
+		else return this.webpageSourceURL.getAuthority();
 	}
 }

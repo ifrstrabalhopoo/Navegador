@@ -14,8 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class Barra extends JPanel {
 	/**
@@ -71,6 +69,12 @@ public class Barra extends JPanel {
 		add(button_Ir, "cell 3 0");
 		
 		JButton button_Login = new JButton("");
+		button_Login.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parentContainer.app.openLoginWindow();
+			}
+		});
 		button_Login.setIcon(new ImageIcon(Barra.class.getResource("/application/icons/finger.png")));
 		add(button_Login, "cell 4 0");
 		
@@ -88,6 +92,7 @@ public class Barra extends JPanel {
 		
 		setupPopupMenu();
 	}
+	
 
 	private void setupPopupMenu() {
 		popupMenu = new JPopupMenu();
@@ -97,17 +102,34 @@ public class Barra extends JPanel {
 		JMenuItem mntmNovaAbaAnnima = new JMenuItem("Nova Aba Anônima");
 		popupMenu.add(mntmNovaAbaAnnima);
 		
-		JMenuItem mntmHistrico_1 = new JMenuItem("HIstórico");
+		JMenuItem mntmHistrico_1 = new JMenuItem("Histórico");
 		popupMenu.add(mntmHistrico_1);
 		
 		JMenuItem mntmFavoritos_1 = new JMenuItem("Favoritos");
 		popupMenu.add(mntmFavoritos_1);
+		
+		JMenuItem mntmAddFavorito_1 = new JMenuItem("Adicionar aos favoritos");
+		popupMenu.add(mntmAddFavorito_1);
 		
 		
 		mntmNovaAba.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentContainer.triggerNewTab();
+			}
+			
+		});
+		mntmAddFavorito_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				parentContainer.app.addFavorito(parentContainer.historico);
+			}
+			
+		});
+		mntmHistrico_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				parentContainer.app.abreTelaHistorico();
 			}
 			
 		});

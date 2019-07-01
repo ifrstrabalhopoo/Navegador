@@ -27,6 +27,8 @@ public class HTMLFetcher {
         HttpURLConnection.setFollowRedirects(true); // defaults to true
         String result = null;
         URL request_url;
+        System.setProperty("http.proxyHost", "10.1.0.3");
+        System.setProperty("http.proxyPort", "3128");
         
             request_url = new URL(url);
             HttpURLConnection http_conn = (HttpURLConnection)request_url.openConnection();

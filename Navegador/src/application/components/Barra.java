@@ -92,6 +92,7 @@ public class Barra extends JPanel {
 		
 		setupPopupMenu();
 	}
+	
 
 	private void setupPopupMenu() {
 		popupMenu = new JPopupMenu();
@@ -101,7 +102,7 @@ public class Barra extends JPanel {
 		JMenuItem mntmNovaAbaAnnima = new JMenuItem("Nova Aba Anônima");
 		popupMenu.add(mntmNovaAbaAnnima);
 		
-		JMenuItem mntmHistrico_1 = new JMenuItem("HIstórico");
+		JMenuItem mntmHistrico_1 = new JMenuItem("Histórico");
 		popupMenu.add(mntmHistrico_1);
 		
 		JMenuItem mntmFavoritos_1 = new JMenuItem("Favoritos");
@@ -115,6 +116,20 @@ public class Barra extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentContainer.triggerNewTab();
+			}
+			
+		});
+		mntmAddFavorito_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				parentContainer.app.addFavorito(parentContainer.historico);
+			}
+			
+		});
+		mntmHistrico_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				parentContainer.app.abreTelaHistorico();
 			}
 			
 		});

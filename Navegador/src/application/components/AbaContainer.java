@@ -14,18 +14,22 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import database.models.Historico;
+
 
 @SuppressWarnings("serial")
 public class AbaContainer extends JPanel {
 	private Barra 		menuBar;
-	JScrollPane 		scrollPane = null;
 	private BasicRender render;
+	Historico			historico = null;
+	JScrollPane 		scrollPane = null;
 	JPanel 				panel;
 	JLabel 				loadingLabel;
 	JLabel 				errorlabel;
 	String 				titulo = "Nova aba";
 	int					tabindex;
 	application.App		app = null;
+	
 	/**
 	 * A aba em si, constituida de menu e conteudo
 	 * @throws MalformedURLException 
@@ -76,6 +80,7 @@ public class AbaContainer extends JPanel {
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			panel.add(scrollPane, BorderLayout.CENTER);
 			app.setTabTitle(tabindex, titulo);
+			this.historico = app.addHistorico(url);
 			panel.revalidate();
 			
 		} catch (Exception e) {

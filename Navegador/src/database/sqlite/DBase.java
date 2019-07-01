@@ -228,7 +228,7 @@ public class DBase {
 		return favs;
 	}
 	public List<Historico> getAllHistoricos() {
-		String sql = "SELECT * FROM `favorito` ; ";
+		String sql = "SELECT * FROM `historico` WHERE `id_usuario` is NULL ; ";
 		List<Historico> hist = new ArrayList<>();
 		try {
 			ResultSet rs = st.executeQuery(sql);
@@ -242,7 +242,23 @@ public class DBase {
 		} catch (SQLException e) {
 			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
 		}
-		
+		return hist;
+	}
+	public List<Historico> getHistoricosLogado(Usuario usr) {
+		String sql = "SELECT * FROM `historico` WHERE `id_usuario` = "+usr.id+"; ";
+		List<Historico> hist = new ArrayList<>();
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int favid = rs.getInt("id");
+				int usrid = rs.getInt("id_usuario");
+				String urlsite	 = rs.getString("urlsite");
+				String dataadd 	 = rs.getString("data_adicionado");
+				hist.add(new Historico(favid,usrid,urlsite,dataadd));
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
+		}
 		return hist;
 	}
 	

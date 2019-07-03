@@ -151,9 +151,9 @@ public class DBase {
 				try {
 					stmt = conn.createStatement();
 					stmt.execute(sql);
-					System.out.println(logPrefix() + "Salvo histórico");
+					System.out.println(logPrefix() + "Salvo favorito");
 				} catch (SQLException e1) {
-					System.out.println(logPrefix() + "Erro ao salvar histórico no banco de dados:  " + e1.getMessage());
+					System.out.println(logPrefix() + "Erro ao salvar favorito no banco de dados:  " + e1.getMessage());
 				}
 		}
 	public Usuario getUsuario(int id) {
@@ -209,9 +209,11 @@ public class DBase {
 		if(usr != null) return true;
 		else return false;
 	}
+	
+	// Favoritos
 	public List<Favorito> getAllFavoritos() {
 		String sql = "SELECT * FROM `favorito` ; ";
-		List<Favorito> favs = new ArrayList<>();
+		List<Favorito> fav = new ArrayList<>();
 		try {
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
@@ -219,14 +221,33 @@ public class DBase {
 				int usrid = rs.getInt("id_usuario");
 				String urlsite	 = rs.getString("urlsite");
 				String dataadd 	 = rs.getString("data_adicionado");
-				favs.add(new Favorito(favid,usrid,urlsite,dataadd));
+				fav.add(new Favorito(favid,usrid,urlsite,dataadd));
 			}
 		} catch (SQLException e) {
 			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
 		}
 		
-		return favs;
+		return fav;
 	}
+	public List<Favorito> getFavoritosLogado(Usuario usr) {
+		String sql = "SELECT * FROM `favorito` WHERE `id_usuario` = "+usr.id+"; ";
+		List<Favorito> fav = new ArrayList<>();
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int favid = rs.getInt("id");
+				int usrid = rs.getInt("id_usuario");
+				String urlsite	 = rs.getString("urlsite");
+				String dataadd 	 = rs.getString("data_adicionado");
+				fav.add(new Favorito(favid,usrid,urlsite,dataadd));
+			}
+		} catch (SQLException e) {
+			err("Erro ao executar query - SELECT FROM USUARIO. " + e.getMessage());
+		}
+		return fav;
+	}
+	
+	// Histórico
 	public List<Historico> getAllHistoricos() {
 		String sql = "SELECT * FROM `historico` WHERE `id_usuario` is NULL ; ";
 		List<Historico> hist = new ArrayList<>();
@@ -261,6 +282,4 @@ public class DBase {
 		}
 		return hist;
 	}
-	
-	
 }

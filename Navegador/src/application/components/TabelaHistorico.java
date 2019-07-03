@@ -23,7 +23,6 @@ public class TabelaHistorico extends JFrame {
 	private application.App	app		= null;
 	private JScrollPane scrollPane 	= null;
 
-	
 	public TabelaHistorico(application.App app, String orderby) {
 		this.app = app;
 		setTitle("Histórico");
@@ -33,7 +32,6 @@ public class TabelaHistorico extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		init();
-		
 	}
 	private void init()
 	{

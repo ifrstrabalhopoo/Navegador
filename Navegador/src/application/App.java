@@ -8,6 +8,7 @@ import com.alee.laf.WebLookAndFeel;
 
 import application.components.AbaContainer;
 import application.components.DialogLogin;
+import application.components.TabelaFavorito;
 import application.components.TabelaHistorico;
 import database.models.Favorito;
 import database.models.Historico;
@@ -28,6 +29,7 @@ public class App {
 	private DialogLogin 	telalogin 	= null;
 	private DBase 			banco 		= null;
 	private TabelaHistorico historicos	= null;
+	private TabelaFavorito  favoritos	= null;
 	private String			appTitle 	= "Navigathor v0.02";
 
 	/**
@@ -180,5 +182,8 @@ public class App {
 	public void abreTelaHistorico() 
 	{
 		historicos = new TabelaHistorico(this, "any");
+	}
+	public void abreTelaFavoritos() {
+		favoritos = new TabelaFavorito(this, "any");
 	}
 }

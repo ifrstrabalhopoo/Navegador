@@ -52,9 +52,6 @@ public class AbaContainer extends JPanel {
 		errorlabel = new JLabel("");
 		errorlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		errorlabel.setIcon(new ImageIcon(AbaContainer.class.getResource("/application/icons/errlogo.png")));
-		
-		
-		
 	}
 
 	

@@ -79,6 +79,10 @@ public class Barra extends JPanel {
 		add(button_Login, "cell 4 0");
 		
 		JButton button_Menu = new JButton("");
+		button_Menu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_Menu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -117,21 +121,27 @@ public class Barra extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				parentContainer.triggerNewTab();
 			}
-			
 		});
+		
 		mntmAddFavorito_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentContainer.app.addFavorito(parentContainer.historico);
 			}
-			
 		});
+		
 		mntmHistrico_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentContainer.app.abreTelaHistorico();
 			}
-			
+		});
+		
+		mntmFavoritos_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				parentContainer.app.abreTelaFavoritos();
+			}
 		});
 	}
 	

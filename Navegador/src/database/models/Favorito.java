@@ -1,5 +1,11 @@
 package database.models;
 
+/**
+ * Modelo de dados do histórico
+ * @author Nathã Schuk
+ *
+ */
+
 public class Favorito extends Historico {
 
 	public Favorito(int id, int id_usuario, String urlsite, String date) {
@@ -15,6 +21,5 @@ public class Favorito extends Historico {
 		if(hist.urlsite != null)
 			this.urlsite = hist.urlsite;
 		this.data_adicionado = new Data();
-		
 	}
 }
